@@ -2,26 +2,20 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BRTHLS — BÚNKER</title>
-<meta name="description" content="BÚNKER: música para construir en un mundo ruidoso. Álbum debut de BRTHLS. 14 tracks. 2026.">
+<meta name="description" content="BÚNKER: música para construir en un mundo ruidoso. Álbum debut de BRTHLS (Berthelius). 14 tracks. 2026.">
 <meta property="og:title" content="BRTHLS — BÚNKER">
-<meta property="og:description" content="Música para construir en un mundo ruidoso. Álbum debut. 14 tracks.">
+<meta property="og:description" content="BÚNKER: música para construir en un mundo ruidoso. Álbum debut. 14 tracks.">
 <meta property="og:image" content="assets/cover.jpg">
 <meta property="og:type" content="music.album">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="BRTHLS — BÚNKER">
-<meta name="twitter:description" content="Música para construir en un mundo ruidoso.">
-<meta name="twitter:image" content="assets/cover.jpg">
-<meta name="theme-color" content="#0a0a0a">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════
-   BRTHLS — BÚNKER · Link-in-Bio
-   Mobile-first · Brutalista · Industrial
-   ═══════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════════
+   BRTHLS — BÚNKER EPK
+   Brutalista / Documental / Industrial
+   ══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
   --black: #0a0a0a;
@@ -34,6 +28,7 @@
   --rust: #8b3a2a;
   --font-display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'Space Mono', 'Courier New', monospace;
+  --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -43,7 +38,10 @@
   color: var(--black);
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 60px;
+}
 
 body {
   font-family: var(--font-display);
@@ -51,744 +49,1300 @@ body {
   color: var(--white-dirty);
   line-height: 1.6;
   overflow-x: hidden;
-  padding-top: calc(28px + env(safe-area-inset-top, 0px));
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-  min-height: 100vh;
+  position: relative;
 }
 
-/* ── GRAIN OVERLAY ── */
-#grain {
+body::after {
+  content: '';
   position: fixed;
-  inset: 0;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--grain);
   pointer-events: none;
   z-index: 9999;
   opacity: 0.5;
-  will-change: transform;
 }
 
-/* ── STATUS BAR (fixed ticker) ── */
-.status-bar {
+/* ── NAV ── */
+nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 28px;
-  background: var(--yellow);
-  color: var(--black);
-  font-family: var(--font-mono);
-  font-size: 0.55rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  overflow: hidden;
-  z-index: 10000;
+  z-index: 1000;
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--cement-dark);
+  padding: 0 2rem;
+  height: 56px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
-.ticker {
+.nav-brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.35em;
+  color: var(--white-dirty);
+  text-decoration: none;
+}
+
+.nav-links {
   display: flex;
-  white-space: nowrap;
-  animation: marquee 25s linear infinite;
+  gap: 0.25rem;
+  list-style: none;
 }
 
-.ticker span {
-  padding: 0 2rem;
-}
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-/* ── CONTAINER ── */
-.container {
-  width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
-  padding: 0 1.25rem;
-}
-
-/* ── HERO ── */
-.hero {
-  text-align: center;
-  padding: 2.5rem 0 1.5rem;
-}
-
-.album-cover {
-  width: min(65vw, 260px);
-  aspect-ratio: 1;
-  object-fit: cover;
-  display: block;
-  margin: 0 auto 1.5rem;
-  border: 1px solid var(--cement-dark);
-  animation: cover-breathe 4s ease-in-out infinite;
-}
-
-@keyframes cover-breathe {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(212, 160, 23, 0),
-                0 8px 24px rgba(0, 0, 0, 0.5);
-    transform: scale(1);
-  }
-  50% {
-    box-shadow: 0 0 28px 4px rgba(212, 160, 23, 0.12),
-                0 12px 36px rgba(0, 0, 0, 0.6);
-    transform: scale(1.01);
-  }
-}
-
-.artist-name {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(0.8rem, 2.5vw, 1rem);
-  letter-spacing: 0.5em;
-  text-transform: uppercase;
-  color: var(--white-dirty);
-  margin-bottom: 0.25rem;
-  position: relative;
-  display: inline-block;
-}
-
-/* Glitch pseudo-elements */
-.artist-name::before,
-.artist-name::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.artist-name.glitching::before {
-  opacity: 0.8;
-  color: var(--rust);
-  animation: glitch-1 0.3s steps(2) forwards;
-  clip-path: inset(20% 0 30% 0);
-}
-
-.artist-name.glitching::after {
-  opacity: 0.8;
-  color: var(--yellow);
-  animation: glitch-2 0.3s steps(2) forwards;
-  clip-path: inset(50% 0 10% 0);
-}
-
-@keyframes glitch-1 {
-  0%   { transform: translate(-2px, -1px); }
-  33%  { transform: translate(2px, 1px); }
-  66%  { transform: translate(-1px, 2px); }
-  100% { transform: translate(0); opacity: 0; }
-}
-
-@keyframes glitch-2 {
-  0%   { transform: translate(2px, 1px); }
-  33%  { transform: translate(-2px, -1px); }
-  66%  { transform: translate(1px, -2px); }
-  100% { transform: translate(0); opacity: 0; }
-}
-
-.album-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(3.2rem, 14vw, 5.5rem);
-  letter-spacing: -0.03em;
-  line-height: 0.85;
-  color: var(--white-dirty);
-  margin-bottom: 0.75rem;
-}
-
-.tagline {
+.nav-links a {
   font-family: var(--font-mono);
-  font-size: clamp(0.6rem, 1.5vw, 0.72rem);
+  font-size: 0.65rem;
   letter-spacing: 0.08em;
-  color: var(--cement);
   text-transform: uppercase;
-}
-
-/* ── TERMINAL METADATA ── */
-.meta-terminal {
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
   color: var(--cement);
-  letter-spacing: 0.05em;
-  line-height: 1.9;
-  padding: 0.8rem 1rem;
-  background: rgba(10, 10, 10, 0.6);
-  border-left: 2px solid var(--yellow);
-  margin: 1.5rem 0;
+  text-decoration: none;
+  padding: 0.4rem 0.65rem;
+  transition: color 0.2s, background 0.2s;
+  border: 1px solid transparent;
 }
 
-.meta-terminal .mk {
-  color: var(--cement-mid);
-  text-transform: uppercase;
-  display: inline-block;
-  min-width: 80px;
-}
-
-.meta-terminal .mv {
-  color: var(--white-dirty);
-}
-
-.meta-terminal .mv--status {
+.nav-links a:hover {
   color: var(--yellow);
-  font-weight: 700;
+  border-color: var(--cement-dark);
 }
 
-/* ── SECTION DIVIDERS ── */
-.divider {
+.nav-links .nav-index {
+  color: var(--cement-mid);
+  margin-right: 0.15rem;
+}
+
+/* Mobile nav */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--cement-dark);
+  color: var(--white-dirty);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle { display: block; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.97);
+    flex-direction: column;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--cement-dark);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 0.7rem 0; border: none; }
+}
+
+/* ── SECTION COMMON ── */
+section {
+  padding: 6rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cement-mid);
+  margin-bottom: 2rem;
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  margin: 2rem 0;
 }
 
-.divider::before,
-.divider::after {
+.section-label::after {
   content: '';
   flex: 1;
   height: 1px;
   background: var(--cement-dark);
 }
 
-.divider span {
-  font-family: var(--font-mono);
-  font-size: 0.52rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--cement-mid);
+.section-number {
+  color: var(--yellow);
+  font-weight: 700;
 }
 
-/* ── SPOTIFY EMBED ── */
-.spotify-embed {
-  width: 100%;
-  margin-bottom: 0.5rem;
+h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
 }
 
-.spotify-embed iframe {
-  width: 100%;
-  height: 152px;
-  border: none;
-  border-radius: 0;
-}
-
-.embed-fallback {
-  display: none;
+/* ── WARNING LABELS ── */
+.label {
+  display: inline-block;
   font-family: var(--font-mono);
   font-size: 0.6rem;
-  color: var(--cement-mid);
-  text-align: center;
-  padding: 2rem 1rem;
-  border: 1px solid var(--cement-dark);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-/* ── PLATFORM LINK BUTTONS ── */
-.links-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.link-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  width: 100%;
-  padding: 0.85rem 1.1rem;
-  background: rgba(58, 56, 53, 0.15);
-  border: 1px solid var(--cement-dark);
-  border-left: 3px solid var(--yellow);
-  color: var(--white-dirty);
-  text-decoration: none;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.02em;
-  transition: transform 0.2s, background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
-  position: relative;
-  /* Stagger entrance */
-  opacity: 0;
-  transform: translateY(14px);
-}
-
-.link-btn.visible {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.5s ease, transform 0.5s ease,
-              background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
-  transition-delay: calc(var(--i, 0) * 0.07s), calc(var(--i, 0) * 0.07s),
-                    0s, 0s, 0s, 0s;
-}
-
-.link-btn:hover,
-.link-btn:active {
-  transform: translateX(4px);
-  background: rgba(58, 56, 53, 0.3);
-}
-
-.link-btn .btn-icon {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.link-btn .btn-icon svg {
-  width: 22px;
-  height: 22px;
-  fill: currentColor;
-}
-
-.link-btn .btn-label { flex: 1; }
-
-.link-btn .btn-arrow {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--cement-mid);
-  transition: transform 0.2s, color 0.2s;
-}
-
-.link-btn:hover .btn-arrow {
-  transform: translateX(4px);
-  color: var(--yellow);
-}
-
-/* Platform brand hover colors */
-.link-btn[data-p="spotify"]:hover       { border-color: #1DB954; color: #1DB954; box-shadow: 0 0 12px rgba(29,185,84,0.1); }
-.link-btn[data-p="apple-music"]:hover   { border-color: #FA243C; color: #FA243C; box-shadow: 0 0 12px rgba(250,36,60,0.1); }
-.link-btn[data-p="youtube-music"]:hover { border-color: #FF0000; color: #FF0000; box-shadow: 0 0 12px rgba(255,0,0,0.1); }
-.link-btn[data-p="bandcamp"]:hover      { border-color: #629AA9; color: #629AA9; box-shadow: 0 0 12px rgba(98,154,169,0.1); }
-.link-btn[data-p="soundcloud"]:hover    { border-color: #FF5500; color: #FF5500; box-shadow: 0 0 12px rgba(255,85,0,0.1); }
-.link-btn[data-p="tidal"]:hover         { border-color: #00FFFF; color: #00FFFF; box-shadow: 0 0 12px rgba(0,255,255,0.1); }
-.link-btn[data-p="amazon-music"]:hover   { border-color: #25D1DA; color: #25D1DA; box-shadow: 0 0 12px rgba(37,209,218,0.1); }
-.link-btn[data-p="deezer"]:hover        { border-color: #A238FF; color: #A238FF; box-shadow: 0 0 12px rgba(162,56,255,0.1); }
-.link-btn[data-p="pandora"]:hover       { border-color: #3668FF; color: #3668FF; box-shadow: 0 0 12px rgba(54,104,255,0.1); }
-
-/* ── SOCIAL LINKS ── */
-.social-row {
-  display: flex;
-  gap: 0.6rem;
-  justify-content: center;
-}
-
-.social-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  border: 1px solid var(--cement-dark);
-  background: rgba(58, 56, 53, 0.15);
-  color: var(--cement);
-  text-decoration: none;
-  transition: all 0.2s;
-}
-
-.social-btn svg {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-}
-
-.social-btn:hover { transform: translateY(-2px); }
-.social-btn[data-p="instagram"]:hover { border-color: #E1306C; color: #E1306C; box-shadow: 0 0 10px rgba(225,48,108,0.12); }
-.social-btn[data-p="tiktok"]:hover    { border-color: #00f2ea; color: #00f2ea; box-shadow: 0 0 10px rgba(0,242,234,0.12); }
-.social-btn[data-p="x"]:hover         { border-color: var(--white-dirty); color: var(--white-dirty); box-shadow: 0 0 10px rgba(232,228,223,0.08); }
-
-/* ── CONTACT BLOCK ── */
-.contact-block {
-  text-align: center;
-}
-
-.contact-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  text-decoration: none;
-  color: var(--yellow);
-  padding: 0.7rem 1.4rem;
+  padding: 0.25rem 0.55rem;
   border: 1px solid var(--yellow);
-  background: rgba(212, 160, 23, 0.06);
-  transition: all 0.2s;
+  color: var(--yellow);
+  background: rgba(212, 160, 23, 0.08);
 }
 
-.contact-btn:hover {
+.label--filled {
   background: var(--yellow);
   color: var(--black);
 }
 
-/* ── FOOTER ── */
-.footer {
-  text-align: center;
-  padding: 2rem 0 1.5rem;
-  margin-top: 1rem;
-  border-top: 1px solid var(--cement-dark);
+/* ── BRUTALIST CARD ── */
+.card {
+  background: rgba(58, 56, 53, 0.3);
+  border: 1px solid var(--cement-dark);
+  padding: 1.5rem;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
-.footer p {
+.card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.6);
+}
+
+/* ── METADATA BLOCK ── */
+.meta-block {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--cement);
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+  padding: 1rem 1.2rem;
+  background: rgba(10, 10, 10, 0.6);
+  border-left: 2px solid var(--yellow);
+}
+
+.meta-block .meta-key {
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  min-width: 100px;
+  display: inline-block;
+}
+
+.meta-block .meta-val {
+  color: var(--white-dirty);
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--cement-dark);
+  color: var(--white-dirty);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
+.btn--primary {
+  background: var(--yellow);
+  color: var(--black);
+  border-color: var(--yellow);
+}
+
+.btn--primary:hover {
+  background: var(--yellow-bright);
+  border-color: var(--yellow-bright);
+  color: var(--black);
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ════════════════════════════════════════════
+   01 · HERO
+   ════════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  max-width: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('assets/cover.jpg') center center / cover no-repeat;
+  filter: brightness(0.35) contrast(1.15);
+  transform: scale(1.05);
+}
+
+.hero-vignette {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(10,10,10,0.8) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 2rem;
+  max-width: 700px;
+}
+
+.hero-artist {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--white-dirty);
+  margin-bottom: 0.5rem;
+  opacity: 0.85;
+}
+
+.hero-album {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(4rem, 12vw, 9rem);
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  color: var(--white-dirty);
+  margin-bottom: 1.5rem;
+}
+
+.hero-tagline {
+  font-family: var(--font-mono);
+  font-size: clamp(0.65rem, 1.2vw, 0.8rem);
+  letter-spacing: 0.1em;
+  color: var(--cement);
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+}
+
+.hero-meta {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--cement-mid);
+  margin-top: 2.5rem;
+  text-transform: uppercase;
+}
+
+.hero-meta span {
+  margin: 0 0.5rem;
+  color: var(--cement-dark);
+}
+
+/* ════════════════════════════════════════════
+   02 · LISTEN
+   ════════════════════════════════════════════ */
+.listen-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.embed-container {
+  width: 100%;
+  border: 1px solid var(--cement-dark);
+  padding: 1rem;
+  background: rgba(10,10,10,0.4);
+}
+
+.embed-container iframe {
+  width: 100%;
+  border: none;
+}
+
+.focus-tracks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.focus-track {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+}
+
+.focus-track .track-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--yellow);
+  font-weight: 700;
+  min-width: 24px;
+}
+
+.focus-track .track-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--white-dirty);
+}
+
+.focus-track .track-hook {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--cement);
+  margin-top: 0.15rem;
+}
+
+.platform-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+/* ════════════════════════════════════════════
+   03 · WATCH
+   ════════════════════════════════════════════ */
+.video-main {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--cement-dark);
+  border: 1px solid var(--cement-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-placeholder {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-align: center;
+  padding: 2rem;
+}
+
+.video-placeholder .play-icon {
+  font-size: 2.5rem;
+  color: var(--yellow);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.clips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .clips-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.clip-placeholder {
+  aspect-ratio: 9/16;
+  background: var(--cement-dark);
+  border: 1px solid rgba(107,102,96,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--font-mono);
   font-size: 0.55rem;
   color: var(--cement-mid);
-  letter-spacing: 0.08em;
   text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: border-color 0.2s;
 }
 
-.footer .epk-link {
-  display: inline-block;
-  margin-top: 0.6rem;
+.clip-placeholder:hover {
+  border-color: var(--yellow);
+}
+
+/* ════════════════════════════════════════════
+   04 · ABOUT
+   ════════════════════════════════════════════ */
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .about-layout { grid-template-columns: 1fr; }
+}
+
+.about-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.about-photos img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.1) contrast(1.05);
+  border: 1px solid var(--cement-dark);
+}
+
+.about-text .one-liner {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--white-dirty);
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+  border-left: 3px solid var(--yellow);
+  padding-left: 1rem;
+}
+
+.about-text .bio-short {
+  color: var(--cement);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.bio-long {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  color: var(--cement);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.bio-long.open {
+  max-height: 600px;
+}
+
+.bio-toggle {
+  background: none;
+  border: none;
+  color: var(--yellow);
   font-family: var(--font-mono);
-  font-size: 0.5rem;
-  color: var(--cement-dark);
-  text-decoration: none;
+  font-size: 0.65rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+}
+
+.bio-toggle:hover {
+  text-decoration: underline;
+}
+
+.identity-bullets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+/* ════════════════════════════════════════════
+   05 · PRESS
+   ════════════════════════════════════════════ */
+.press-quotes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.press-quote {
+  padding: 1.5rem;
+  border-left: 3px solid var(--yellow);
+}
+
+.press-quote blockquote {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--white-dirty);
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.press-quote cite {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-style: normal;
+}
+
+.similar-vibes {
+  margin-top: 3rem;
+}
+
+.similar-vibes h3 {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+}
+
+.vibes-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.vibe-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--cement-dark);
+  color: var(--cement);
+  letter-spacing: 0.05em;
+}
+
+/* ════════════════════════════════════════════
+   06 · ASSETS
+   ════════════════════════════════════════════ */
+.assets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.asset-item {
+  padding: 1.2rem;
+  text-decoration: none;
+  color: var(--white-dirty);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.asset-item .asset-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.asset-item .asset-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.asset-item .asset-desc {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ════════════════════════════════════════════
+   07 · LIVE
+   ════════════════════════════════════════════ */
+.live-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .live-layout { grid-template-columns: 1fr; }
+}
+
+.live-format h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--white-dirty);
+}
+
+.live-specs {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.live-specs li {
+  font-size: 0.85rem;
+  color: var(--cement);
+  padding-left: 1rem;
+  border-left: 2px solid var(--cement-dark);
+  line-height: 1.5;
+}
+
+.live-specs li strong {
+  color: var(--white-dirty);
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.15rem;
+}
+
+/* ════════════════════════════════════════════
+   08 · CONTACT
+   ════════════════════════════════════════════ */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .contact-layout { grid-template-columns: 1fr; }
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.contact-item .contact-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.contact-item a {
+  color: var(--white-dirty);
+  text-decoration: none;
+  font-size: 0.9rem;
   transition: color 0.2s;
 }
 
-.footer .epk-link:hover { color: var(--yellow); }
+.contact-item a:hover { color: var(--yellow); }
 
-/* ── WAVEFORM BACKGROUND ── */
-.waveform-bg {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
+.contact-form {
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 3px;
-  opacity: 0.05;
-  z-index: 0;
-  pointer-events: none;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.waveform-bg span {
-  width: 2.5px;
-  background: var(--yellow);
-  animation: wave var(--d, 1.2s) ease-in-out infinite alternate;
-  animation-delay: var(--dl, 0s);
-  border-radius: 1px 1px 0 0;
+.contact-form input,
+.contact-form textarea {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.8rem 1rem;
+  background: rgba(58, 56, 53, 0.3);
+  border: 1px solid var(--cement-dark);
+  color: var(--white-dirty);
+  outline: none;
+  transition: border-color 0.2s;
+  letter-spacing: 0.03em;
 }
 
-@keyframes wave {
-  from { height: var(--hm, 6px); }
-  to   { height: var(--hx, 50px); }
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--yellow);
 }
 
-/* ── REDUCED MOTION ── */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.1s !important;
-  }
-  .ticker { animation: none; }
-  .link-btn { opacity: 1; transform: none; }
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
 }
 
-/* ── RESPONSIVE ── */
-@media (min-width: 430px) {
-  .container { padding: 0 1.5rem; }
-  .hero { padding-top: 3rem; }
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.65rem;
 }
 
-@media (min-width: 768px) {
-  .container { max-width: 480px; }
-  .hero { padding-top: 3.5rem; }
+.response-time {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.5rem;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 3rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--cement-dark);
+}
+
+footer p {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--cement-mid);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.footer-ai {
+  margin-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--cement-dark);
+  letter-spacing: 0.05em;
+  font-style: italic;
+  text-transform: none;
+}
+
+/* ── TRACKLIST ── */
+.tracklist {
+  list-style: none;
+  margin-top: 2rem;
+  border: 1px solid var(--cement-dark);
+}
+
+.tracklist li {
+  display: flex;
+  align-items: center;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid rgba(58,56,53,0.3);
+  font-size: 0.8rem;
+  transition: background 0.15s;
+}
+
+.tracklist li:last-child { border-bottom: none; }
+
+.tracklist li:hover {
+  background: rgba(212, 160, 23, 0.04);
+}
+
+.tracklist .tl-num {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--cement-mid);
+  min-width: 32px;
+}
+
+.tracklist .tl-title {
+  color: var(--white-dirty);
+  font-weight: 500;
+  flex: 1;
+}
+
+.tracklist .tl-bonus {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── DIVIDER ── */
+.section-divider {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 1px;
+  background: var(--cement-dark);
+}
+
+/* ── GLITCH HOVER ── */
+@keyframes glitch-micro {
+  0% { transform: translate(0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(1px, -1px); }
+  60% { transform: translate(-1px, 0); }
+  80% { transform: translate(1px, 1px); }
+  100% { transform: translate(0); }
+}
+
+.glitch-hover:hover {
+  animation: glitch-micro 0.1s linear;
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>
 </head>
 <body>
 
-<!-- ═══ GRAIN OVERLAY ═══ -->
-<div id="grain" aria-hidden="true"></div>
+<!-- ══════ NAV ══════ -->
+<nav>
+  <a href="#hero" class="nav-brand">BRTHLS</a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">MENU</button>
+  <ul class="nav-links">
+    <li><a href="#listen"><span class="nav-index">01</span> Listen</a></li>
+    <li><a href="#watch"><span class="nav-index">02</span> Watch</a></li>
+    <li><a href="#about"><span class="nav-index">03</span> About</a></li>
+    <li><a href="#press"><span class="nav-index">04</span> Press</a></li>
+    <li><a href="#assets"><span class="nav-index">05</span> Assets</a></li>
+    <li><a href="#live"><span class="nav-index">06</span> Live</a></li>
+    <li><a href="#contact"><span class="nav-index">07</span> Contact</a></li>
+  </ul>
+</nav>
 
-<!-- ═══ STATUS BAR ═══ -->
-<div class="status-bar" aria-hidden="true">
-  <div class="ticker">
-    <span>BÚNKER — OUT NOW</span>
-    <span>14 TRACKS</span>
-    <span>LISTEN EVERYWHERE</span>
-    <span>BRTHLS 2026</span>
-    <span>TRULY INDEPENDENT</span>
-    <span>BÚNKER — OUT NOW</span>
-    <span>14 TRACKS</span>
-    <span>LISTEN EVERYWHERE</span>
-    <span>BRTHLS 2026</span>
-    <span>TRULY INDEPENDENT</span>
+<!-- ══════ 01 · HERO ══════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-content">
+    <div class="hero-artist">B R T H L S</div>
+    <div class="hero-album glitch-hover">BÚNKER</div>
+    <div class="hero-tagline">Música para construir en un mundo ruidoso</div>
+    <div class="btn-group" style="justify-content: center;">
+      <a href="#listen" class="btn btn--primary">&#9654; Listen</a>
+      <a href="#assets" class="btn">&#8615; Press Kit</a>
+    </div>
+    <div class="hero-meta">
+      Álbum debut <span>·</span> 14 tracks <span>·</span> 2026 <span>·</span> Truly independent
+    </div>
   </div>
-</div>
+</section>
 
-<!-- ═══ WAVEFORM BACKGROUND ═══ -->
-<div class="waveform-bg" aria-hidden="true">
-  <span style="--d:1.1s;--dl:0s;--hm:4px;--hx:38px"></span>
-  <span style="--d:1.5s;--dl:.08s;--hm:6px;--hx:55px"></span>
-  <span style="--d:1.3s;--dl:.15s;--hm:3px;--hx:28px"></span>
-  <span style="--d:1.8s;--dl:.22s;--hm:8px;--hx:68px"></span>
-  <span style="--d:1.2s;--dl:.3s;--hm:5px;--hx:42px"></span>
-  <span style="--d:1.6s;--dl:.1s;--hm:4px;--hx:52px"></span>
-  <span style="--d:1.4s;--dl:.28s;--hm:7px;--hx:60px"></span>
-  <span style="--d:1.1s;--dl:.05s;--hm:3px;--hx:32px"></span>
-  <span style="--d:1.7s;--dl:.18s;--hm:6px;--hx:72px"></span>
-  <span style="--d:1.3s;--dl:.25s;--hm:4px;--hx:45px"></span>
-  <span style="--d:1.5s;--dl:.12s;--hm:5px;--hx:58px"></span>
-  <span style="--d:1.2s;--dl:.33s;--hm:7px;--hx:35px"></span>
-  <span style="--d:1.9s;--dl:.02s;--hm:3px;--hx:65px"></span>
-  <span style="--d:1.4s;--dl:.2s;--hm:6px;--hx:48px"></span>
-  <span style="--d:1.1s;--dl:.16s;--hm:4px;--hx:40px"></span>
-  <span style="--d:1.6s;--dl:.08s;--hm:8px;--hx:70px"></span>
-  <span style="--d:1.3s;--dl:.27s;--hm:3px;--hx:30px"></span>
-  <span style="--d:1.8s;--dl:.14s;--hm:5px;--hx:62px"></span>
-  <span style="--d:1.2s;--dl:.35s;--hm:6px;--hx:44px"></span>
-  <span style="--d:1.5s;--dl:.06s;--hm:4px;--hx:56px"></span>
-  <span style="--d:1.7s;--dl:.23s;--hm:7px;--hx:38px"></span>
-  <span style="--d:1.1s;--dl:.1s;--hm:3px;--hx:50px"></span>
-  <span style="--d:1.4s;--dl:.19s;--hm:5px;--hx:66px"></span>
-  <span style="--d:1.6s;--dl:.04s;--hm:4px;--hx:42px"></span>
-  <span style="--d:1.3s;--dl:.3s;--hm:6px;--hx:54px"></span>
-  <span style="--d:1.9s;--dl:.13s;--hm:8px;--hx:75px"></span>
-  <span style="--d:1.2s;--dl:.21s;--hm:3px;--hx:34px"></span>
-  <span style="--d:1.5s;--dl:.07s;--hm:5px;--hx:60px"></span>
-  <span style="--d:1.1s;--dl:.26s;--hm:4px;--hx:46px"></span>
-  <span style="--d:1.7s;--dl:.15s;--hm:7px;--hx:52px"></span>
-  <span style="--d:1.4s;--dl:.32s;--hm:3px;--hx:40px"></span>
-  <span style="--d:1.6s;--dl:.09s;--hm:6px;--hx:68px"></span>
-  <span style="--d:1.2s;--dl:.24s;--hm:5px;--hx:36px"></span>
-  <span style="--d:1.8s;--dl:.17s;--hm:4px;--hx:58px"></span>
-  <span style="--d:1.3s;--dl:.03s;--hm:7px;--hx:48px"></span>
-  <span style="--d:1.5s;--dl:.29s;--hm:3px;--hx:62px"></span>
-  <span style="--d:1.1s;--dl:.11s;--hm:6px;--hx:44px"></span>
-  <span style="--d:1.7s;--dl:.22s;--hm:4px;--hx:70px"></span>
-  <span style="--d:1.4s;--dl:.06s;--hm:5px;--hx:38px"></span>
-  <span style="--d:1.6s;--dl:.18s;--hm:8px;--hx:55px"></span>
-</div>
-
-<!-- ═══ MAIN CONTENT ═══ -->
-<main class="container">
-
-  <!-- HERO -->
-  <section class="hero">
-    <img src="assets/cover.jpg" alt="BÚNKER — Album Cover" class="album-cover" loading="eager">
-    <div class="artist-name" data-text="B R T H L S">B R T H L S</div>
-    <div class="album-title">BÚNKER</div>
-    <div class="tagline">Música para construir en un mundo ruidoso</div>
-  </section>
-
-  <!-- TERMINAL METADATA -->
-  <div class="meta-terminal">
-    <span class="mk">Catalog</span> <span class="mv">BUNKER-001</span><br>
-    <span class="mk">Format</span> <span class="mv">Digital Album</span><br>
-    <span class="mk">Tracks</span> <span class="mv">14 (12 + 2 Bonus)</span><br>
-    <span class="mk">Status</span> <span class="mv mv--status">SHIPPED</span>
+<!-- ══════ 02 · LISTEN ══════ -->
+<section id="listen" class="reveal">
+  <div class="section-label">
+    <span class="section-number">01</span> Listen
   </div>
 
-  <!-- LISTEN -->
-  <div class="divider"><span>Listen</span></div>
+  <h2>Escucha BÚNKER</h2>
 
-  <div class="spotify-embed">
-    <iframe
-      src="about:blank"
-      data-src="https://open.spotify.com/embed/album/ALBUM_ID?utm_source=generator&theme=0"
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      loading="lazy"
-      title="Spotify Player">
-    </iframe>
-    <noscript>
-      <div class="embed-fallback" style="display:block">Reproduce BÚNKER en Spotify</div>
-    </noscript>
+  <div class="listen-grid">
+    <div class="embed-container">
+      <!-- Replace with your Spotify embed URL -->
+      <iframe style="border-radius:0;height:380px;" src="about:blank"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+        data-placeholder="SPOTIFY EMBED — Reemplaza el src con tu URL de embed de Spotify">
+      </iframe>
+      <p style="font-family:var(--font-mono);font-size:0.6rem;color:var(--cement-mid);margin-top:0.75rem;text-transform:uppercase;letter-spacing:0.1em;">
+        <!-- When live, replace the iframe src with: https://open.spotify.com/embed/album/YOUR_ALBUM_ID -->
+        Reemplazar iframe src con tu embed de Spotify cuando esté disponible
+      </p>
+    </div>
   </div>
 
-  <!-- STREAMING PLATFORMS -->
-  <div class="divider"><span>Stream</span></div>
+  <div class="focus-tracks">
+    <div class="card focus-track glitch-hover">
+      <span class="track-num">05</span>
+      <div>
+        <div class="track-title">RUIDO BLANCO</div>
+        <div class="track-hook">La grieta en el centro del disco</div>
+      </div>
+    </div>
+    <div class="card focus-track glitch-hover">
+      <span class="track-num">07</span>
+      <div>
+        <div class="track-title">MODO MONJE</div>
+        <div class="track-hook">Apagar el ruido, encender el taller</div>
+      </div>
+    </div>
+    <div class="card focus-track glitch-hover">
+      <span class="track-num">08</span>
+      <div>
+        <div class="track-title">MI TRIBU</div>
+        <div class="track-hook">Para quien elige su gente y no se arrepiente</div>
+      </div>
+    </div>
+  </div>
 
-  <div class="links-stack" data-stagger>
-    <a href="https://open.spotify.com/artist/BRTHLS" target="_blank" rel="noopener" class="link-btn" data-p="spotify" style="--i:0">
-      <span class="btn-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+  <div class="platform-links">
+    <a href="#" class="btn">Spotify</a>
+    <a href="#" class="btn">Apple Music</a>
+    <a href="#" class="btn">YouTube Music</a>
+    <a href="https://brthls.bandcamp.com" target="_blank" rel="noopener" class="btn">Bandcamp</a>
+    <a href="#" class="btn">SoundCloud</a>
+  </div>
+
+  <div style="display:flex;justify-content:center;margin-top:1.5rem;">
+    <iframe scrolling="no" style="border:0;width:100%;max-width:400px;height:50px;" src="https://bandcamp.com/band_follow_button_deluxe/1074119459"></iframe>
+  </div>
+
+  <!-- Tracklist -->
+  <ol class="tracklist" style="margin-top:2.5rem;">
+    <li><span class="tl-num">01</span><span class="tl-title">MANIFIESTO BÚNKER</span></li>
+    <li><span class="tl-num">02</span><span class="tl-title">BUENA AÑADA '90</span></li>
+    <li><span class="tl-num">03</span><span class="tl-title">HUMANO REAL</span></li>
+    <li><span class="tl-num">04</span><span class="tl-title">VACA PÚRPURA</span></li>
+    <li><span class="tl-num">05</span><span class="tl-title">RUIDO BLANCO</span></li>
+    <li><span class="tl-num">06</span><span class="tl-title">SIEMPRE BETA</span></li>
+    <li><span class="tl-num">07</span><span class="tl-title">MODO MONJE</span></li>
+    <li><span class="tl-num">08</span><span class="tl-title">MI TRIBU</span></li>
+    <li><span class="tl-num">09</span><span class="tl-title">TEMPLE</span></li>
+    <li><span class="tl-num">10</span><span class="tl-title">GLITCH DEL SISTEMA</span></li>
+    <li><span class="tl-num">11</span><span class="tl-title">7-8</span></li>
+    <li><span class="tl-num">12</span><span class="tl-title">INDEPENDENT IRL</span></li>
+    <li><span class="tl-num">13</span><span class="tl-title">ALMA-ARTE</span><span class="tl-bonus">Bonus</span></li>
+    <li><span class="tl-num">14</span><span class="tl-title">FRIKI AVENTURA</span><span class="tl-bonus">Bonus</span></li>
+  </ol>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════ 03 · WATCH ══════ -->
+<section id="watch" class="reveal">
+  <div class="section-label">
+    <span class="section-number">02</span> Watch
+  </div>
+
+  <h2>Visual</h2>
+
+  <div class="video-main">
+    <div class="video-placeholder">
+      <span class="play-icon">&#9654;</span>
+      Video principal<br>
+      <span style="font-size:0.55rem;color:var(--cement-dark);margin-top:0.5rem;display:block;">
+        Reemplazar con embed de YouTube/Vimeo
       </span>
-      <span class="btn-label">Spotify</span>
-      <span class="btn-arrow">&rarr;</span>
+    </div>
+  </div>
+
+  <div class="clips-grid" style="margin-top:1.5rem;">
+    <div class="clip-placeholder">Reel 01</div>
+    <div class="clip-placeholder">Reel 02</div>
+    <div class="clip-placeholder">Reel 03</div>
+    <div class="clip-placeholder">Reel 04</div>
+    <div class="clip-placeholder">Reel 05</div>
+    <div class="clip-placeholder">Reel 06</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════ 04 · ABOUT ══════ -->
+<section id="about" class="reveal">
+  <div class="section-label">
+    <span class="section-number">03</span> About
+  </div>
+
+  <div class="about-layout">
+    <div class="about-photos">
+      <img src="assets/portrait1.jpg" alt="BRTHLS — Portrait" style="grid-row: span 2;">
+      <img src="assets/portrait2.jpg" alt="BRTHLS — Portrait 2">
+      <img src="assets/cover.jpg" alt="BÚNKER — Cover">
+    </div>
+
+    <div class="about-text">
+      <div class="one-liner">
+        Música para construir en un mundo ruidoso.
+      </div>
+
+      <p class="bio-short">
+        BRTHLS es el proyecto musical de Berthelius: creativo, director y constructor de sistemas con sangre vikinga y alma de isla. Su música mezcla rap conceptual, spoken hooks y energía indie con una narrativa de vida real: emprender, caer, reconstruir, amar, criar y crear sin pedir permiso. BRTHLS no busca personaje: busca obra. BÚNKER es su debut y su declaración: una forma de convertir el ruido en arquitectura emocional.
+      </p>
+
+      <div class="bio-long" id="bioLong">
+        <p style="margin-top:1rem;">
+          BRTHLS es el alter ego sonoro de Berthelius, un creativo nacido en 1990 que vive entre dos fuerzas: la cabeza fría y el fuego de la isla. Desde muy joven combinó emprendimiento, cultura geek, producción y dirección creativa; hoy convierte esa mezcla en música con una obsesión clara: construir.
+        </p>
+        <p style="margin-top:1rem;">
+          Su sonido cruza rap conceptual, spoken word y pulsos alternativos, con letras que se sienten como capítulos: identidad, método, tribu, resiliencia y una vulnerabilidad sin maquillaje. BRTHLS no se presenta como influencer ni como "artista de pose"; se presenta como taller encendido: ideas que se prueban, se rompen y se vuelven a montar.
+        </p>
+        <p style="margin-top:1rem;">
+          BÚNKER es su primer álbum: una secuencia con intención, una cartografía personal que habla a quien hace, a quien cuida y a quien se siente raro. Producido con herramientas contemporáneas y acabado con sello propio, el proyecto apunta tanto a streaming como a directo híbrido (edits, loops, performance).
+        </p>
+        <p style="margin-top:1rem;">
+          BRTHLS es futuro, pero con una brújula antigua: trabajo real, emoción real, comunidad real.
+        </p>
+      </div>
+
+      <button class="bio-toggle" onclick="
+        const el = document.getElementById('bioLong');
+        el.classList.toggle('open');
+        this.textContent = el.classList.contains('open') ? '— Leer menos' : '+ Leer más';
+      ">+ Leer más</button>
+
+      <div class="identity-bullets">
+        <span class="label">Vikingo / Guanche</span>
+        <span class="label">Hacker de hábitos</span>
+        <span class="label">Arte + Sistemas</span>
+        <span class="label">Truly Independent</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════ 05 · PRESS ══════ -->
+<section id="press" class="reveal">
+  <div class="section-label">
+    <span class="section-number">04</span> Press
+  </div>
+
+  <h2>Prensa</h2>
+
+  <div class="press-quotes">
+    <div class="card press-quote">
+      <blockquote>"Un debut brutalista: verdad, método y familia."</blockquote>
+      <cite>— tagline BÚNKER</cite>
+    </div>
+    <div class="card press-quote">
+      <blockquote>"No es motivación. Es ingeniería emocional."</blockquote>
+      <cite>— promo BÚNKER</cite>
+    </div>
+    <div class="card press-quote">
+      <blockquote>"Un álbum-manifiesto: del sistema a la piel."</blockquote>
+      <cite>— EPK BÚNKER</cite>
+    </div>
+  </div>
+
+  <div class="meta-block" style="margin-top:2.5rem;">
+    <strong style="color:var(--yellow);font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.15em;">PRESS BLURB</strong><br><br>
+    Con BÚNKER, BRTHLS (Berthelius) entrega un debut que funciona como manifiesto: 14 tracks que recorren identidad, disciplina, afectos y resiliencia, con un centro de vulnerabilidad deliberada. El álbum suena brutalista y humano: intros como umbrales, hooks directos y letras que evitan la pose para hablar de construir en un mundo ruidoso. Un disco para creativos, frikis sin complejos y gente que quiere hacer cosas reales.
+  </div>
+
+  <div class="similar-vibes">
+    <h3>Similar vibes</h3>
+    <div class="vibes-list">
+      <span class="vibe-tag">Portishead oscuro + Earl Sweatshirt introspectivo</span>
+      <span class="vibe-tag">Spoken word con estructura hip-hop</span>
+      <span class="vibe-tag">Brutalismo sonoro en castellano</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════ 06 · ASSETS ══════ -->
+<section id="assets" class="reveal">
+  <div class="section-label">
+    <span class="section-number">05</span> Assets
+  </div>
+
+  <h2>Press Kit</h2>
+  <p style="color:var(--cement);font-size:0.85rem;margin-bottom:0.5rem;">Descarga todo lo que necesitas para cobertura, booking o difusión.</p>
+
+  <div class="assets-grid">
+    <a href="#" class="card asset-item glitch-hover">
+      <span class="asset-icon">&#9744;</span>
+      <span class="asset-name">EPK Completo</span>
+      <span class="asset-desc">ZIP · Todo incluido</span>
     </a>
-
-    <a href="https://music.apple.com/artist/brthls" target="_blank" rel="noopener" class="link-btn" data-p="apple-music" style="--i:1">
-      <span class="btn-icon">
-        <svg viewBox="0 0 24 24"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043A5.022 5.022 0 0019.7.222C18.964.076 18.218 0 17.462 0H6.541c-.758 0-1.504.076-2.24.222a5.022 5.022 0 00-1.874.669C1.309 1.624.564 2.624.247 3.934a9.23 9.23 0 00-.24 2.19C0 6.474 0 6.824 0 7.174v9.652c0 .35 0 .7.007 1.05.015.773.096 1.536.24 2.19.317 1.31 1.062 2.31 2.18 3.043.588.39 1.218.667 1.874.82.736.146 1.482.222 2.24.222h10.92c.758 0 1.504-.076 2.24-.222a5.022 5.022 0 001.874-.67c1.118-.733 1.863-1.733 2.18-3.043.144-.654.225-1.417.24-2.19.007-.35.007-.7.007-1.05V7.174c0-.35 0-.7-.007-1.05zM17.5 12.148v4.076c0 .34-.022.672-.086.996-.134.672-.522 1.158-1.132 1.418a2.47 2.47 0 01-.803.176 2.632 2.632 0 01-1.56-.312c-.547-.312-.892-.772-1.002-1.42a2.174 2.174 0 01.242-1.504c.328-.584.842-.942 1.49-1.1.377-.09.762-.144 1.147-.192.32-.042.512-.192.55-.512V9.896a.588.588 0 00-.02-.158c-.04-.14-.136-.222-.282-.2-.34.05-.68.104-1.018.162l-4.068.722a.66.66 0 00-.202.072c-.13.08-.182.204-.188.35-.002.054-.004.108-.004.16v6.354c0 .34-.02.672-.086.996-.134.672-.522 1.158-1.132 1.418a2.47 2.47 0 01-.803.176 2.632 2.632 0 01-1.56-.312c-.547-.312-.892-.772-1.002-1.42a2.174 2.174 0 01.242-1.504c.328-.584.842-.942 1.49-1.1.377-.09.762-.144 1.147-.192.32-.042.508-.19.55-.512V7.594c0-.258.014-.516.06-.77.072-.39.294-.66.66-.798.196-.074.4-.12.606-.152l5.252-.932c.188-.032.378-.062.566-.082.286-.032.51.12.562.402.016.086.022.174.022.262V12.148z"/></svg>
-      </span>
-      <span class="btn-label">Apple Music</span>
-      <span class="btn-arrow">&rarr;</span>
+    <a href="#" class="card asset-item glitch-hover">
+      <span class="asset-icon">&#9634;</span>
+      <span class="asset-name">Press Photos</span>
+      <span class="asset-desc">JPG · Hi-res portraits</span>
     </a>
-
-    <a href="https://music.youtube.com/channel/BRTHLS" target="_blank" rel="noopener" class="link-btn" data-p="youtube-music" style="--i:2">
-      <span class="btn-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm0 19.104c-3.924 0-7.104-3.18-7.104-7.104S8.076 4.896 12 4.896s7.104 3.18 7.104 7.104-3.18 7.104-7.104 7.104zm0-13.332c-3.432 0-6.228 2.796-6.228 6.228S8.568 18.228 12 18.228 18.228 15.432 18.228 12 15.432 5.772 12 5.772zM9.684 15.54V8.46L16.2 12l-6.516 3.54z"/></svg>
-      </span>
-      <span class="btn-label">YouTube Music</span>
-      <span class="btn-arrow">&rarr;</span>
+    <a href="#" class="card asset-item glitch-hover">
+      <span class="asset-icon">&#9635;</span>
+      <span class="asset-name">Album Cover</span>
+      <span class="asset-desc">JPG · 3000×3000</span>
     </a>
-
-    <a href="https://brthls.bandcamp.com" target="_blank" rel="noopener" class="link-btn" data-p="bandcamp" style="--i:3">
-      <span class="btn-icon">
-        <svg viewBox="0 0 24 24"><path d="M0 18.75l7.437-13.5H24l-7.438 13.5z"/></svg>
-      </span>
-      <span class="btn-label">Bandcamp</span>
-      <span class="btn-arrow">&rarr;</span>
+    <a href="#" class="card asset-item glitch-hover">
+      <span class="asset-icon">&#9636;</span>
+      <span class="asset-name">1-Sheet PDF</span>
+      <span class="asset-desc">PDF · Una página imprimible</span>
     </a>
-
-    <a href="https://soundcloud.com/brthls" target="_blank" rel="noopener" class="link-btn" data-p="soundcloud" style="--i:4">
-      <span class="btn-icon">
-        <svg viewBox="0 0 24 24"><path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.06-.05-.1-.1-.1m-.899.828c-.06 0-.091.037-.104.094L0 14.479l.172 1.308c.013.06.045.094.104.094.054 0 .09-.038.1-.094l.2-1.308-.2-1.332c-.01-.06-.046-.094-.1-.094m1.8-1.143c-.066 0-.108.045-.115.104l-.21 2.563.21 2.457c.007.066.05.104.115.104.064 0 .105-.045.115-.104l.24-2.457-.24-2.563c-.01-.064-.05-.104-.115-.104m.901-.095c-.075 0-.12.051-.127.115l-.195 2.66.195 2.497c.007.075.052.12.127.12.074 0 .119-.051.126-.12l.225-2.497-.225-2.66c-.007-.07-.052-.115-.126-.115m.9-.18c-.089 0-.135.06-.142.135l-.18 2.84.18 2.523c.007.082.053.135.142.135.09 0 .135-.06.142-.135l.202-2.523-.21-2.84c-.007-.08-.053-.135-.142-.135m.932-.313c-.1 0-.148.067-.155.148l-.165 3.153.172 2.546c.007.09.053.148.155.148.1 0 .147-.067.155-.148l.195-2.546-.195-3.153c-.008-.086-.055-.148-.155-.148m.923-.352c-.112 0-.164.075-.17.165l-.152 3.505.152 2.553c.007.098.06.165.17.165.112 0 .163-.075.172-.165l.172-2.553-.172-3.505c-.01-.097-.06-.165-.172-.165m.921-.382c-.12 0-.176.09-.183.18l-.15 3.887.15 2.553c.007.104.06.18.183.18.12 0 .176-.09.184-.18l.165-2.553-.165-3.887c-.008-.097-.064-.18-.184-.18m.958-.322c-.134 0-.188.097-.195.195l-.12 4.21.12 2.545c.007.113.06.195.195.195.128 0 .188-.09.195-.195l.143-2.545-.143-4.21c-.007-.105-.067-.195-.195-.195m.953-.382c-.142 0-.2.105-.207.21l-.113 4.593.113 2.535c.007.12.064.21.207.21.142 0 .2-.105.21-.21l.127-2.535-.127-4.593c-.01-.112-.068-.21-.21-.21m2.756-1.088c-.024 0-.05.003-.076.007a4.853 4.853 0 00-1.712-.313c-.14 0-.21.105-.21.225l-.098 5.955.105 2.52c.007.127.067.225.21.225.135 0 .2-.105.21-.225l.113-2.52-.113-5.955c-.002-.002-.002-.002-.002-.002-.002 0-.002.002-.002.002a4.827 4.827 0 011.575.534c.21.105.39.243.54.405.48.52.78 1.2.78 1.96 0 .87-.375 1.65-.975 2.19-.3.27-.66.48-1.053.63-.225.075-.465.127-.72.15a.46.46 0 01-.06 0h-1.38c-.135 0-.2-.105-.21-.225V7.23c0-.127.075-.232.2-.247.352-.045.712-.067 1.072-.067.75 0 1.47.127 2.145.375A5.28 5.28 0 0124 12.326c0 1.44-.57 2.745-1.5 3.705-.465.48-1.02.87-1.635 1.14a5.28 5.28 0 01-2.16.45h-.885"/></svg>
-      </span>
-      <span class="btn-label">SoundCloud</span>
-      <span class="btn-arrow">&rarr;</span>
+    <a href="#" class="card asset-item glitch-hover">
+      <span class="asset-icon">&#9637;</span>
+      <span class="asset-name">Bio + Press Release</span>
+      <span class="asset-desc">TXT · Corta + Larga</span>
     </a>
-
-    <a href="https://tidal.com/browse/artist/BRTHLS" target="_blank" rel="noopener" class="link-btn" data-p="tidal" style="--i:5">
-      <span class="btn-icon">
-        <svg viewBox="0 0 24 24"><path d="M12.012 3.992L8.008 7.996 12.012 12l4.004-4.004L12.012 3.992zM4.004 7.996L0 12l4.004 4.004L8.008 12 4.004 7.996zm16 0L16 12l4.004 4.004L24.008 12 20.004 7.996zM12.012 12L8.008 16.004l4.004 4.004 4.004-4.004L12.012 12z"/></svg>
-      </span>
-      <span class="btn-label">Tidal</span>
-      <span class="btn-arrow">&rarr;</span>
-    </a>
-
-    <a href="https://music.amazon.com/artists/BRTHLS" target="_blank" rel="noopener" class="link-btn" data-p="amazon-music" style="--i:6">
-      <span class="btn-icon">
-        <svg viewBox="0 0 24 24"><path d="M13.958 10.09c0 1.232.029 2.256-.591 3.351-.502.891-1.301 1.438-2.186 1.438-1.214 0-1.922-.924-1.922-2.292 0-2.692 2.415-3.182 4.7-3.182v.685zm3.186 7.705a.66.66 0 01-.753.077c-1.06-.879-1.247-1.287-1.829-2.125-1.747 1.782-2.983 2.315-5.249 2.315-2.68 0-4.768-1.653-4.768-4.96 0-2.583 1.4-4.339 3.394-5.2 1.728-.753 4.14-.888 5.985-1.098v-.41c0-.753.058-1.642-.384-2.292-.384-.58-1.117-.82-1.767-.82-1.199 0-2.267.616-2.528 1.891-.054.285-.261.565-.546.579l-3.063-.33c-.258-.058-.543-.265-.47-.66C5.895 1.84 8.857.502 11.53.502c1.371 0 3.162.365 4.243 1.4 1.371 1.283 1.241 2.993 1.241 4.859v4.404c0 1.322.549 1.904 1.067 2.617.18.258.222.565-.009.753-.577.481-1.603 1.378-2.166 1.879l-.761-.62zm2.823 1.18c-7.6 3.6-17.4.6-22.2-4.8-.3-.3 0-.75.45-.45C3.42 17.76 9.12 19.65 14.28 19.65c3.36 0 7.2-.9 9.9-2.7.48-.24.84.3.42.66z M22.08 20.88c-.3-.45-2.1-.21-2.94-.12-.24.03-.27-.18-.06-.33 1.44-1.02 3.81-.72 4.08-.39.27.36-.09 2.76-1.44 3.93-.21.18-.39.09-.3-.15.3-.72.96-2.37.66-2.97z"/></svg>
-      </span>
-      <span class="btn-label">Amazon Music</span>
-      <span class="btn-arrow">&rarr;</span>
-    </a>
-
-    <a href="https://www.deezer.com/artist/BRTHLS" target="_blank" rel="noopener" class="link-btn" data-p="deezer" style="--i:7">
-      <span class="btn-icon">
-        <svg viewBox="0 0 24 24"><path d="M18.81 4.16v3.03H24V4.16h-5.19zM6.27 8.38v3.027h5.189V8.38H6.27zm6.27 0v3.027h5.19V8.38h-5.19zm6.27 0v3.027H24V8.38h-5.19zM6.27 12.594v3.027h5.189v-3.027H6.27zm6.27 0v3.027h5.19v-3.027h-5.19zm6.27 0v3.027H24v-3.027h-5.19zM0 16.81v3.029h5.19v-3.03H0zm6.27 0v3.029h5.189v-3.03H6.27zm6.27 0v3.029h5.19v-3.03h-5.19zm6.27 0v3.029H24v-3.03h-5.19z"/></svg>
-      </span>
-      <span class="btn-label">Deezer</span>
-      <span class="btn-arrow">&rarr;</span>
-    </a>
-
-    <a href="https://www.pandora.com/artist/brthls" target="_blank" rel="noopener" class="link-btn" data-p="pandora" style="--i:8">
-      <span class="btn-icon">
-        <svg viewBox="0 0 24 24"><path d="M12.004 0C5.386 0 .024 5.363.024 11.979c0 6.617 5.362 11.98 11.98 11.98 6.616 0 11.979-5.363 11.979-11.98C23.983 5.363 18.62 0 12.004 0zm2.39 15.472H9.86V5.063h4.533c2.903 0 5.255 2.352 5.255 5.255 0 2.902-2.352 5.254-5.255 5.254v-.1z"/></svg>
-      </span>
-      <span class="btn-label">Pandora</span>
-      <span class="btn-arrow">&rarr;</span>
+    <a href="#" class="card asset-item glitch-hover">
+      <span class="asset-icon">&#9638;</span>
+      <span class="asset-name">Lyrics Pack</span>
+      <span class="asset-desc">TXT + LRC · 14 tracks</span>
     </a>
   </div>
 
-  <!-- SOCIAL -->
-  <div class="divider"><span>Connect</span></div>
+  <div class="meta-block" style="margin-top:2rem;">
+    <span class="meta-key">CATALOG:</span> <span class="meta-val">BUNKER-001</span><br>
+    <span class="meta-key">FORMAT:</span> <span class="meta-val">DIGITAL ALBUM</span><br>
+    <span class="meta-key">TRACKS:</span> <span class="meta-val">14 (12 + 2 BONUS)</span><br>
+    <span class="meta-key">STATUS:</span> <span class="meta-val" style="color:var(--yellow);">SHIPPED</span>
+  </div>
+</section>
 
-  <div class="social-row">
-    <a href="https://instagram.com/brthls" target="_blank" rel="noopener" class="social-btn" data-p="instagram" aria-label="Instagram">
-      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-    </a>
-    <a href="https://tiktok.com/@brthls" target="_blank" rel="noopener" class="social-btn" data-p="tiktok" aria-label="TikTok">
-      <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-    </a>
-    <a href="https://x.com/brthls" target="_blank" rel="noopener" class="social-btn" data-p="x" aria-label="X">
-      <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-    </a>
+<div class="section-divider"></div>
+
+<!-- ══════ 07 · LIVE ══════ -->
+<section id="live" class="reveal">
+  <div class="section-label">
+    <span class="section-number">06</span> Live
   </div>
 
-  <!-- CONTACT -->
-  <div class="divider"><span>Booking</span></div>
+  <h2>En directo</h2>
 
-  <div class="contact-block">
-    <a href="mailto:music@brthls.com" class="contact-btn">
-      <span>music@brthls.com</span>
-      <span style="font-weight:400;opacity:0.6">&rarr;</span>
-    </a>
+  <div class="live-layout">
+    <div class="live-format">
+      <h3>BRTHLS LIVE / DJ Hybrid Set</h3>
+      <p style="color:var(--cement);font-size:0.85rem;line-height:1.7;margin-bottom:1.5rem;">
+        Performance híbrida con edits, loops y reconstrucción de temas en directo. Visuales tipográficos "BÚNKER" y momentos spoken. Ideal para salas, festivales y escenarios alternativos donde el show importa tanto como la canción.
+      </p>
+      <ul class="live-specs">
+        <li>
+          <strong>Formato</strong>
+          Adaptable: 30 / 60 / 90 min
+        </li>
+        <li>
+          <strong>Setup</strong>
+          Ableton Live + controlador + loops + edits en directo
+        </li>
+        <li>
+          <strong>Visual</strong>
+          Tipografía brutalista + glitch + proyecciones BÚNKER
+        </li>
+        <li>
+          <strong>Rider</strong>
+          PA estéreo, 1 monitor, mesa, electricidad, pantalla/proyector (opcional)
+        </li>
+      </ul>
+    </div>
+
+    <div class="card" style="padding:2rem;">
+      <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--cement-mid);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:1rem;">
+        Booking info
+      </div>
+      <div style="font-size:1.5rem;font-weight:700;margin-bottom:1rem;color:var(--white-dirty);">
+        ¿Quieres BRTHLS<br>en tu evento?
+      </div>
+      <p style="color:var(--cement);font-size:0.8rem;margin-bottom:1.5rem;line-height:1.6;">
+        Shows diseñados para encadenar energía y narrativa. Cada set se adapta al espacio y la audiencia.
+      </p>
+      <a href="#contact" class="btn btn--primary">Contactar booking</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════ 08 · CONTACT ══════ -->
+<section id="contact" class="reveal">
+  <div class="section-label">
+    <span class="section-number">07</span> Contact
   </div>
 
-  <!-- FOOTER -->
-  <div class="footer">
-    <p>&copy; <span id="year">2026</span> BRTHLS &mdash; Todos los derechos reservados</p>
-    <a href="/epk/" class="epk-link">EPK / Press Kit &rarr;</a>
+  <h2>Contacto</h2>
+
+  <div class="contact-layout">
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="contact-label">Press / Booking</span>
+        <a href="mailto:music@brthls.com">music@brthls.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Instagram</span>
+        <a href="https://instagram.com/brthls" target="_blank">@brthls</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">YouTube</span>
+        <a href="#" target="_blank">BRTHLS</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">SoundCloud</span>
+        <a href="#" target="_blank">BRTHLS</a>
+      </div>
+
+      <div class="meta-block" style="margin-top:1rem;">
+        <span class="meta-key">AI:</span> <span class="meta-val" style="font-style:italic;">"Uso herramientas de 2026, pero la dirección creativa, la escritura y el montaje final son míos: no es un botón, es un proceso."</span>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('Formulario enviado — conecta con tu backend');">
+      <input type="text" placeholder="Nombre" required>
+      <input type="email" placeholder="Email" required>
+      <textarea placeholder="Mensaje"></textarea>
+      <button type="submit" class="btn btn--primary" style="align-self:flex-start;">Enviar</button>
+      <span class="response-time">Response time: 48h</span>
+    </form>
   </div>
+</section>
 
-</main>
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <p>© 2025 BRTHLS — Todos los derechos reservados</p>
+  <p class="footer-ai">Producido con herramientas contemporáneas. Dirección creativa y montaje final: BRTHLS.</p>
+</footer>
 
-<!-- ═══ SCRIPTS ═══ -->
+<!-- ══════ SCRIPTS ══════ -->
 <script>
-(function() {
-  'use strict';
-
-  // 1. Stagger entrance animations
-  var staggerGroups = document.querySelectorAll('[data-stagger]');
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        var btns = entry.target.querySelectorAll('.link-btn');
-        btns.forEach(function(btn) { btn.classList.add('visible'); });
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  staggerGroups.forEach(function(g) { observer.observe(g); });
-
-  // 2. Parallax grain
-  var grain = document.getElementById('grain');
-  var ticking = false;
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      requestAnimationFrame(function() {
-        grain.style.transform = 'translateY(' + (window.scrollY * 0.15) + 'px)';
-        ticking = false;
-      });
-      ticking = true;
+// Scroll reveal
+const revealElements = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
     }
   });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-  // 3. Glitch text auto-trigger
-  var glitchEl = document.querySelector('.artist-name');
-  function triggerGlitch() {
-    glitchEl.classList.add('glitching');
-    setTimeout(function() { glitchEl.classList.remove('glitching'); }, 300);
-  }
-  function scheduleGlitch() {
-    var delay = 5000 + Math.random() * 5000;
-    setTimeout(function() {
-      triggerGlitch();
-      scheduleGlitch();
-    }, delay);
-  }
-  // Initial trigger after 2s
-  setTimeout(function() {
-    triggerGlitch();
-    scheduleGlitch();
-  }, 2000);
+revealElements.forEach(el => observer.observe(el));
 
-  // 4. Spotify embed lazy load
-  var embedIframe = document.querySelector('.spotify-embed iframe');
-  if (embedIframe && embedIframe.dataset.src) {
-    var embedObs = new IntersectionObserver(function(entries) {
-      if (entries[0].isIntersecting) {
-        embedIframe.src = embedIframe.dataset.src;
-        embedObs.disconnect();
-      }
-    }, { rootMargin: '200px' });
-    embedObs.observe(embedIframe);
-  }
+// Close mobile nav on link click
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.remove('open');
+  });
+});
 
-  // 5. Dynamic year
-  var yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+// Active nav tracking
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
 
-})();
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (window.scrollY >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.style.color = '';
+    if (link.getAttribute('href') === '#' + current) {
+      link.style.color = 'var(--yellow)';
+    }
+  });
+});
 </script>
 
 </body>
