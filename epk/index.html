@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRTHLS — BÚNKER</title>
+<meta name="description" content="BÚNKER: música para construir en un mundo ruidoso. Álbum debut de BRTHLS (Berthelius). 14 tracks. 2026.">
+<meta property="og:title" content="BRTHLS — BÚNKER">
+<meta property="og:description" content="BÚNKER: música para construir en un mundo ruidoso. Álbum debut. 14 tracks.">
+<meta property="og:image" content="../assets/cover.jpg">
+<meta property="og:type" content="music.album">
+<style>
+/* ══════════════════════════════════════════════════════════
+   BRTHLS — BÚNKER EPK
+   Brutalista / Documental / Industrial
+   ══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  --black: #0a0a0a;
+  --white-dirty: #e8e4df;
+  --cement: #b5b0a8;
+  --cement-dark: #3a3835;
+  --cement-mid: #6b6660;
+  --yellow: #d4a017;
+  --yellow-bright: #e8b52a;
+  --rust: #8b3a2a;
+  --font-display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Space Mono', 'Courier New', monospace;
+  --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+::selection {
+  background: var(--yellow);
+  color: var(--black);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 60px;
+}
+
+body {
+  font-family: var(--font-display);
+  background: var(--black);
+  color: var(--white-dirty);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--grain);
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--cement-dark);
+  padding: 0 2rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.35em;
+  color: var(--white-dirty);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cement);
+  text-decoration: none;
+  padding: 0.4rem 0.65rem;
+  transition: color 0.2s, background 0.2s;
+  border: 1px solid transparent;
+}
+
+.nav-links a:hover {
+  color: var(--yellow);
+  border-color: var(--cement-dark);
+}
+
+.nav-links .nav-index {
+  color: var(--cement-mid);
+  margin-right: 0.15rem;
+}
+
+/* Mobile nav */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--cement-dark);
+  color: var(--white-dirty);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle { display: block; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.97);
+    flex-direction: column;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--cement-dark);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 0.7rem 0; border: none; }
+}
+
+/* ── SECTION COMMON ── */
+section {
+  padding: 6rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cement-mid);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--cement-dark);
+}
+
+.section-number {
+  color: var(--yellow);
+  font-weight: 700;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+/* ── WARNING LABELS ── */
+.label {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.55rem;
+  border: 1px solid var(--yellow);
+  color: var(--yellow);
+  background: rgba(212, 160, 23, 0.08);
+}
+
+.label--filled {
+  background: var(--yellow);
+  color: var(--black);
+}
+
+/* ── BRUTALIST CARD ── */
+.card {
+  background: rgba(58, 56, 53, 0.3);
+  border: 1px solid var(--cement-dark);
+  padding: 1.5rem;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.6);
+}
+
+/* ── METADATA BLOCK ── */
+.meta-block {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--cement);
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+  padding: 1rem 1.2rem;
+  background: rgba(10, 10, 10, 0.6);
+  border-left: 2px solid var(--yellow);
+}
+
+.meta-block .meta-key {
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  min-width: 100px;
+  display: inline-block;
+}
+
+.meta-block .meta-val {
+  color: var(--white-dirty);
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--cement-dark);
+  color: var(--white-dirty);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
+.btn--primary {
+  background: var(--yellow);
+  color: var(--black);
+  border-color: var(--yellow);
+}
+
+.btn--primary:hover {
+  background: var(--yellow-bright);
+  border-color: var(--yellow-bright);
+  color: var(--black);
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ════════════════════════════════════════════
+   01 · HERO
+   ════════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  max-width: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('../assets/cover.jpg') center center / cover no-repeat;
+  filter: brightness(0.35) contrast(1.15);
+  transform: scale(1.05);
+}
+
+.hero-vignette {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(10,10,10,0.8) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 2rem;
+  max-width: 700px;
+}
+
+.hero-artist {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--white-dirty);
+  margin-bottom: 0.5rem;
+  opacity: 0.85;
+}
+
+.hero-album {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(4rem, 12vw, 9rem);
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  color: var(--white-dirty);
+  margin-bottom: 1.5rem;
+}
+
+.hero-tagline {
+  font-family: var(--font-mono);
+  font-size: clamp(0.65rem, 1.2vw, 0.8rem);
+  letter-spacing: 0.1em;
+  color: var(--cement);
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+}
+
+.hero-meta {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--cement-mid);
+  margin-top: 2.5rem;
+  text-transform: uppercase;
+}
+
+.hero-meta span {
+  margin: 0 0.5rem;
+  color: var(--cement-dark);
+}
+
+/* ════════════════════════════════════════════
+   02 · LISTEN
+   ════════════════════════════════════════════ */
+.listen-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.embed-container {
+  width: 100%;
+  border: 1px solid var(--cement-dark);
+  padding: 1rem;
+  background: rgba(10,10,10,0.4);
+}
+
+.embed-container iframe {
+  width: 100%;
+  border: none;
+}
+
+.focus-tracks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.focus-track {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+}
+
+.focus-track .track-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--yellow);
+  font-weight: 700;
+  min-width: 24px;
+}
+
+.focus-track .track-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--white-dirty);
+}
+
+.focus-track .track-hook {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--cement);
+  margin-top: 0.15rem;
+}
+
+.platform-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+/* ════════════════════════════════════════════
+   03 · WATCH
+   ════════════════════════════════════════════ */
+.video-main {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--cement-dark);
+  border: 1px solid var(--cement-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-placeholder {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-align: center;
+  padding: 2rem;
+}
+
+.video-placeholder .play-icon {
+  font-size: 2.5rem;
+  color: var(--yellow);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.clips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .clips-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.clip-placeholder {
+  aspect-ratio: 9/16;
+  background: var(--cement-dark);
+  border: 1px solid rgba(107,102,96,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: border-color 0.2s;
+}
+
+.clip-placeholder:hover {
+  border-color: var(--yellow);
+}
+
+/* ════════════════════════════════════════════
+   04 · ABOUT
+   ════════════════════════════════════════════ */
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .about-layout { grid-template-columns: 1fr; }
+}
+
+.about-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.about-photos img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.1) contrast(1.05);
+  border: 1px solid var(--cement-dark);
+}
+
+.about-text .one-liner {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--white-dirty);
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+  border-left: 3px solid var(--yellow);
+  padding-left: 1rem;
+}
+
+.about-text .bio-short {
+  color: var(--cement);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.bio-long {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  color: var(--cement);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.bio-long.open {
+  max-height: 600px;
+}
+
+.bio-toggle {
+  background: none;
+  border: none;
+  color: var(--yellow);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+}
+
+.bio-toggle:hover {
+  text-decoration: underline;
+}
+
+.identity-bullets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+/* ════════════════════════════════════════════
+   05 · PRESS
+   ════════════════════════════════════════════ */
+.press-quotes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.press-quote {
+  padding: 1.5rem;
+  border-left: 3px solid var(--yellow);
+}
+
+.press-quote blockquote {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--white-dirty);
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.press-quote cite {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-style: normal;
+}
+
+.similar-vibes {
+  margin-top: 3rem;
+}
+
+.similar-vibes h3 {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+}
+
+.vibes-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.vibe-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--cement-dark);
+  color: var(--cement);
+  letter-spacing: 0.05em;
+}
+
+/* ════════════════════════════════════════════
+   06 · ASSETS
+   ════════════════════════════════════════════ */
+.assets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.asset-item {
+  padding: 1.2rem;
+  text-decoration: none;
+  color: var(--white-dirty);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.asset-item .asset-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.asset-item .asset-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.asset-item .asset-desc {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ════════════════════════════════════════════
+   07 · LIVE
+   ════════════════════════════════════════════ */
+.live-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .live-layout { grid-template-columns: 1fr; }
+}
+
+.live-format h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--white-dirty);
+}
+
+.live-specs {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.live-specs li {
+  font-size: 0.85rem;
+  color: var(--cement);
+  padding-left: 1rem;
+  border-left: 2px solid var(--cement-dark);
+  line-height: 1.5;
+}
+
+.live-specs li strong {
+  color: var(--white-dirty);
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.15rem;
+}
+
+/* ════════════════════════════════════════════
+   08 · CONTACT
+   ════════════════════════════════════════════ */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .contact-layout { grid-template-columns: 1fr; }
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.contact-item .contact-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.contact-item a {
+  color: var(--white-dirty);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.contact-item a:hover { color: var(--yellow); }
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.8rem 1rem;
+  background: rgba(58, 56, 53, 0.3);
+  border: 1px solid var(--cement-dark);
+  color: var(--white-dirty);
+  outline: none;
+  transition: border-color 0.2s;
+  letter-spacing: 0.03em;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--yellow);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.65rem;
+}
+
+.response-time {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.5rem;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 3rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--cement-dark);
+}
+
+footer p {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--cement-mid);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.footer-ai {
+  margin-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--cement-dark);
+  letter-spacing: 0.05em;
+  font-style: italic;
+  text-transform: none;
+}
+
+/* ── TRACKLIST ── */
+.tracklist {
+  list-style: none;
+  margin-top: 2rem;
+  border: 1px solid var(--cement-dark);
+}
+
+.tracklist li {
+  display: flex;
+  align-items: center;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid rgba(58,56,53,0.3);
+  font-size: 0.8rem;
+  transition: background 0.15s;
+}
+
+.tracklist li:last-child { border-bottom: none; }
+
+.tracklist li:hover {
+  background: rgba(212, 160, 23, 0.04);
+}
+
+.tracklist .tl-num {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--cement-mid);
+  min-width: 32px;
+}
+
+.tracklist .tl-title {
+  color: var(--white-dirty);
+  font-weight: 500;
+  flex: 1;
+}
+
+.tracklist .tl-bonus {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--cement-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── DIVIDER ── */
+.section-divider {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 1px;
+  background: var(--cement-dark);
+}
+
+/* ── GLITCH HOVER ── */
+@keyframes glitch-micro {
+  0% { transform: translate(0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(1px, -1px); }
+  60% { transform: translate(-1px, 0); }
+  80% { transform: translate(1px, 1px); }
+  100% { transform: translate(0); }
+}
+
+.glitch-hover:hover {
+  animation: glitch-micro 0.1s linear;
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- ══════ NAV ══════ -->
+<nav>
+  <a href="#hero" class="nav-brand">BRTHLS</a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">MENU</button>
+  <ul class="nav-links">
+    <li><a href="#listen"><span class="nav-index">01</span> Listen</a></li>
+    <li><a href="#watch"><span class="nav-index">02</span> Watch</a></li>
+    <li><a href="#about"><span class="nav-index">03</span> About</a></li>
+    <li><a href="#press"><span class="nav-index">04</span> Press</a></li>
+    <li><a href="#assets"><span class="nav-index">05</span> Assets</a></li>
+    <li><a href="#live"><span class="nav-index">06</span> Live</a></li>
+    <li><a href="#contact"><span class="nav-index">07</span> Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ══════ 01 · HERO ══════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-content">
+    <div class="hero-artist">B R T H L S</div>
+    <div class="hero-album glitch-hover">BÚNKER</div>
+    <div class="hero-tagline">Música para construir en un mundo ruidoso</div>
+    <div class="btn-group" style="justify-content: center;">
+      <a href="#listen" class="btn btn--primary">&#9654; Listen</a>
+      <a href="#assets" class="btn">&#8615; Press Kit</a>
+    </div>
+    <div class="hero-meta">
+      Álbum debut <span>·</span> 14 tracks <span>·</span> 2026 <span>·</span> Truly independent
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 02 · LISTEN ══════ -->
+<section id="listen" class="reveal">
+  <div class="section-label">
+    <span class="section-number">01</span> Listen
+  </div>
+
+  <h2>Escucha BÚNKER</h2>
+
+  <div class="listen-grid">
+    <div class="embed-container">
+      <!-- Replace with your Spotify embed URL -->
+      <iframe style="border-radius:0;height:380px;" src="about:blank"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+        data-placeholder="SPOTIFY EMBED — Reemplaza el src con tu URL de embed de Spotify">
+      </iframe>
+      <p style="font-family:var(--font-mono);font-size:0.6rem;color:var(--cement-mid);margin-top:0.75rem;text-transform:uppercase;letter-spacing:0.1em;">
+        <!-- When live, replace the iframe src with: https://open.spotify.com/embed/album/YOUR_ALBUM_ID -->
+        Reemplazar iframe src con tu embed de Spotify cuando esté disponible
+      </p>
+    </div>
+  </div>
+
+  <div class="focus-tracks">
+    <div class="card focus-track glitch-hover">
+      <span class="track-num">05</span>
+      <div>
+        <div class="track-title">RUIDO BLANCO</div>
+        <div class="track-hook">La grieta en el centro del disco</div>
+      </div>
+    </div>
+    <div class="card focus-track glitch-hover">
+      <span class="track-num">07</span>
+      <div>
+        <div class="track-title">MODO MONJE</div>
+        <div class="track-hook">Apagar el ruido, encender el taller</div>
+      </div>
+    </div>
+    <div class="card focus-track glitch-hover">
+      <span class="track-num">08</span>
+      <div>
+        <div class="track-title">MI TRIBU</div>
+        <div class="track-hook">Para quien elige su gente y no se arrepiente</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="platform-links">
+    <a href="#" class="btn">Spotify</a>
+    <a href="#" class="btn">Apple Music</a>
+    <a href="#" class="btn">YouTube Music</a>
+    <a href="#" class="btn">Bandcamp</a>
+    <a href="#" class="btn">SoundCloud</a>
+  </div>
+
+  <!-- Tracklist -->
+  <ol class="tracklist" style="margin-top:2.5rem;">
+    <li><span class="tl-num">01</span><span class="tl-title">MANIFIESTO BÚNKER</span></li>
+    <li><span class="tl-num">02</span><span class="tl-title">BUENA AÑADA '90</span></li>
+    <li><span class="tl-num">03</span><span class="tl-title">HUMANO REAL</span></li>
+    <li><span class="tl-num">04</span><span class="tl-title">VACA PÚRPURA</span></li>
+    <li><span class="tl-num">05</span><span class="tl-title">RUIDO BLANCO</span></li>
+    <li><span class="tl-num">06</span><span class="tl-title">SIEMPRE BETA</span></li>
+    <li><span class="tl-num">07</span><span class="tl-title">MODO MONJE</span></li>
+    <li><span class="tl-num">08</span><span class="tl-title">MI TRIBU</span></li>
+    <li><span class="tl-num">09</span><span class="tl-title">TEMPLE</span></li>
+    <li><span class="tl-num">10</span><span class="tl-title">GLITCH DEL SISTEMA</span></li>
+    <li><span class="tl-num">11</span><span class="tl-title">7-8</span></li>
+    <li><span class="tl-num">12</span><span class="tl-title">INDEPENDENT IRL</span></li>
+    <li><span class="tl-num">13</span><span class="tl-title">ALMA-ARTE</span><span class="tl-bonus">Bonus</span></li>
+    <li><span class="tl-num">14</span><span class="tl-title">FRIKI AVENTURA</span><span class="tl-bonus">Bonus</span></li>
+  </ol>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════ 03 · WATCH ══════ -->
+<section id="watch" class="reveal">
+  <div class="section-label">
+    <span class="section-number">02</span> Watch
+  </div>
+
+  <h2>Visual</h2>
+
+  <div class="video-main">
+    <div class="video-placeholder">
+      <span class="play-icon">&#9654;</span>
+      Video principal<br>
+      <span style="font-size:0.55rem;color:var(--cement-dark);margin-top:0.5rem;display:block;">
+        Reemplazar con embed de YouTube/Vimeo
+      </span>
+    </div>
+  </div>
+
+  <div class="clips-grid" style="margin-top:1.5rem;">
+    <div class="clip-placeholder">Reel 01</div>
+    <div class="clip-placeholder">Reel 02</div>
+    <div class="clip-placeholder">Reel 03</div>
+    <div class="clip-placeholder">Reel 04</div>
+    <div class="clip-placeholder">Reel 05</div>
+    <div class="clip-placeholder">Reel 06</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════ 04 · ABOUT ══════ -->
+<section id="about" class="reveal">
+  <div class="section-label">
+    <span class="section-number">03</span> About
+  </div>
+
+  <div class="about-layout">
+    <div class="about-photos">
+      <img src="../assets/portrait1.jpg" alt="BRTHLS — Portrait" style="grid-row: span 2;">
+      <img src="../assets/portrait2.jpg" alt="BRTHLS — Portrait 2">
+      <img src="../assets/cover.jpg" alt="BÚNKER — Cover">
+    </div>
+
+    <div class="about-text">
+      <div class="one-liner">
+        Música para construir en un mundo ruidoso.
+      </div>
+
+      <p class="bio-short">
+        BRTHLS es el proyecto musical de Berthelius: creativo, director y constructor de sistemas con sangre vikinga y alma de isla. Su música mezcla rap conceptual, spoken hooks y energía indie con una narrativa de vida real: emprender, caer, reconstruir, amar, criar y crear sin pedir permiso. BRTHLS no busca personaje: busca obra. BÚNKER es su debut y su declaración: una forma de convertir el ruido en arquitectura emocional.
+      </p>
+
+      <div class="bio-long" id="bioLong">
+        <p style="margin-top:1rem;">
+          BRTHLS es el alter ego sonoro de Berthelius, un creativo nacido en 1990 que vive entre dos fuerzas: la cabeza fría y el fuego de la isla. Desde muy joven combinó emprendimiento, cultura geek, producción y dirección creativa; hoy convierte esa mezcla en música con una obsesión clara: construir.
+        </p>
+        <p style="margin-top:1rem;">
+          Su sonido cruza rap conceptual, spoken word y pulsos alternativos, con letras que se sienten como capítulos: identidad, método, tribu, resiliencia y una vulnerabilidad sin maquillaje. BRTHLS no se presenta como influencer ni como "artista de pose"; se presenta como taller encendido: ideas que se prueban, se rompen y se vuelven a montar.
+        </p>
+        <p style="margin-top:1rem;">
+          BÚNKER es su primer álbum: una secuencia con intención, una cartografía personal que habla a quien hace, a quien cuida y a quien se siente raro. Producido con herramientas contemporáneas y acabado con sello propio, el proyecto apunta tanto a streaming como a directo híbrido (edits, loops, performance).
+        </p>
+        <p style="margin-top:1rem;">
+          BRTHLS es futuro, pero con una brújula antigua: trabajo real, emoción real, comunidad real.
+        </p>
+      </div>
+
+      <button class="bio-toggle" onclick="
+        const el = document.getElementById('bioLong');
+        el.classList.toggle('open');
+        this.textContent = el.classList.contains('open') ? '— Leer menos' : '+ Leer más';
+      ">+ Leer más</button>
+
+      <div class="identity-bullets">
+        <span class="label">Vikingo / Guanche</span>
+        <span class="label">Hacker de hábitos</span>
+        <span class="label">Arte + Sistemas</span>
+        <span class="label">Truly Independent</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════ 05 · PRESS ══════ -->
+<section id="press" class="reveal">
+  <div class="section-label">
+    <span class="section-number">04</span> Press
+  </div>
+
+  <h2>Prensa</h2>
+
+  <div class="press-quotes">
+    <div class="card press-quote">
+      <blockquote>"Un debut brutalista: verdad, método y familia."</blockquote>
+      <cite>— tagline BÚNKER</cite>
+    </div>
+    <div class="card press-quote">
+      <blockquote>"No es motivación. Es ingeniería emocional."</blockquote>
+      <cite>— promo BÚNKER</cite>
+    </div>
+    <div class="card press-quote">
+      <blockquote>"Un álbum-manifiesto: del sistema a la piel."</blockquote>
+      <cite>— EPK BÚNKER</cite>
+    </div>
+  </div>
+
+  <div class="meta-block" style="margin-top:2.5rem;">
+    <strong style="color:var(--yellow);font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.15em;">PRESS BLURB</strong><br><br>
+    Con BÚNKER, BRTHLS (Berthelius) entrega un debut que funciona como manifiesto: 14 tracks que recorren identidad, disciplina, afectos y resiliencia, con un centro de vulnerabilidad deliberada. El álbum suena brutalista y humano: intros como umbrales, hooks directos y letras que evitan la pose para hablar de construir en un mundo ruidoso. Un disco para creativos, frikis sin complejos y gente que quiere hacer cosas reales.
+  </div>
+
+  <div class="similar-vibes">
+    <h3>Similar vibes</h3>
+    <div class="vibes-list">
+      <span class="vibe-tag">Portishead oscuro + Earl Sweatshirt introspectivo</span>
+      <span class="vibe-tag">Spoken word con estructura hip-hop</span>
+      <span class="vibe-tag">Brutalismo sonoro en castellano</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════ 06 · ASSETS ══════ -->
+<section id="assets" class="reveal">
+  <div class="section-label">
+    <span class="section-number">05</span> Assets
+  </div>
+
+  <h2>Press Kit</h2>
+  <p style="color:var(--cement);font-size:0.85rem;margin-bottom:0.5rem;">Descarga todo lo que necesitas para cobertura, booking o difusión.</p>
+
+  <div class="assets-grid">
+    <a href="#" class="card asset-item glitch-hover">
+      <span class="asset-icon">&#9744;</span>
+      <span class="asset-name">EPK Completo</span>
+      <span class="asset-desc">ZIP · Todo incluido</span>
+    </a>
+    <a href="#" class="card asset-item glitch-hover">
+      <span class="asset-icon">&#9634;</span>
+      <span class="asset-name">Press Photos</span>
+      <span class="asset-desc">JPG · Hi-res portraits</span>
+    </a>
+    <a href="#" class="card asset-item glitch-hover">
+      <span class="asset-icon">&#9635;</span>
+      <span class="asset-name">Album Cover</span>
+      <span class="asset-desc">JPG · 3000×3000</span>
+    </a>
+    <a href="#" class="card asset-item glitch-hover">
+      <span class="asset-icon">&#9636;</span>
+      <span class="asset-name">1-Sheet PDF</span>
+      <span class="asset-desc">PDF · Una página imprimible</span>
+    </a>
+    <a href="#" class="card asset-item glitch-hover">
+      <span class="asset-icon">&#9637;</span>
+      <span class="asset-name">Bio + Press Release</span>
+      <span class="asset-desc">TXT · Corta + Larga</span>
+    </a>
+    <a href="#" class="card asset-item glitch-hover">
+      <span class="asset-icon">&#9638;</span>
+      <span class="asset-name">Lyrics Pack</span>
+      <span class="asset-desc">TXT + LRC · 14 tracks</span>
+    </a>
+  </div>
+
+  <div class="meta-block" style="margin-top:2rem;">
+    <span class="meta-key">CATALOG:</span> <span class="meta-val">BUNKER-001</span><br>
+    <span class="meta-key">FORMAT:</span> <span class="meta-val">DIGITAL ALBUM</span><br>
+    <span class="meta-key">TRACKS:</span> <span class="meta-val">14 (12 + 2 BONUS)</span><br>
+    <span class="meta-key">STATUS:</span> <span class="meta-val" style="color:var(--yellow);">SHIPPED</span>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════ 07 · LIVE ══════ -->
+<section id="live" class="reveal">
+  <div class="section-label">
+    <span class="section-number">06</span> Live
+  </div>
+
+  <h2>En directo</h2>
+
+  <div class="live-layout">
+    <div class="live-format">
+      <h3>BRTHLS LIVE / DJ Hybrid Set</h3>
+      <p style="color:var(--cement);font-size:0.85rem;line-height:1.7;margin-bottom:1.5rem;">
+        Performance híbrida con edits, loops y reconstrucción de temas en directo. Visuales tipográficos "BÚNKER" y momentos spoken. Ideal para salas, festivales y escenarios alternativos donde el show importa tanto como la canción.
+      </p>
+      <ul class="live-specs">
+        <li>
+          <strong>Formato</strong>
+          Adaptable: 30 / 60 / 90 min
+        </li>
+        <li>
+          <strong>Setup</strong>
+          Ableton Live + controlador + loops + edits en directo
+        </li>
+        <li>
+          <strong>Visual</strong>
+          Tipografía brutalista + glitch + proyecciones BÚNKER
+        </li>
+        <li>
+          <strong>Rider</strong>
+          PA estéreo, 1 monitor, mesa, electricidad, pantalla/proyector (opcional)
+        </li>
+      </ul>
+    </div>
+
+    <div class="card" style="padding:2rem;">
+      <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--cement-mid);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:1rem;">
+        Booking info
+      </div>
+      <div style="font-size:1.5rem;font-weight:700;margin-bottom:1rem;color:var(--white-dirty);">
+        ¿Quieres BRTHLS<br>en tu evento?
+      </div>
+      <p style="color:var(--cement);font-size:0.8rem;margin-bottom:1.5rem;line-height:1.6;">
+        Shows diseñados para encadenar energía y narrativa. Cada set se adapta al espacio y la audiencia.
+      </p>
+      <a href="#contact" class="btn btn--primary">Contactar booking</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════ 08 · CONTACT ══════ -->
+<section id="contact" class="reveal">
+  <div class="section-label">
+    <span class="section-number">07</span> Contact
+  </div>
+
+  <h2>Contacto</h2>
+
+  <div class="contact-layout">
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="contact-label">Press / Booking</span>
+        <a href="mailto:music@brthls.com">music@brthls.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Instagram</span>
+        <a href="https://instagram.com/brthls" target="_blank">@brthls</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">YouTube</span>
+        <a href="#" target="_blank">BRTHLS</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">SoundCloud</span>
+        <a href="#" target="_blank">BRTHLS</a>
+      </div>
+
+      <div class="meta-block" style="margin-top:1rem;">
+        <span class="meta-key">AI:</span> <span class="meta-val" style="font-style:italic;">"Uso herramientas de 2026, pero la dirección creativa, la escritura y el montaje final son míos: no es un botón, es un proceso."</span>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('Formulario enviado — conecta con tu backend');">
+      <input type="text" placeholder="Nombre" required>
+      <input type="email" placeholder="Email" required>
+      <textarea placeholder="Mensaje"></textarea>
+      <button type="submit" class="btn btn--primary" style="align-self:flex-start;">Enviar</button>
+      <span class="response-time">Response time: 48h</span>
+    </form>
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <p>© 2025 BRTHLS — Todos los derechos reservados</p>
+  <p class="footer-ai">Producido con herramientas contemporáneas. Dirección creativa y montaje final: BRTHLS.</p>
+</footer>
+
+<!-- ══════ SCRIPTS ══════ -->
+<script>
+// Scroll reveal
+const revealElements = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+revealElements.forEach(el => observer.observe(el));
+
+// Close mobile nav on link click
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.remove('open');
+  });
+});
+
+// Active nav tracking
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (window.scrollY >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.style.color = '';
+    if (link.getAttribute('href') === '#' + current) {
+      link.style.color = 'var(--yellow)';
+    }
+  });
+});
+</script>
+
+</body>
+</html>
