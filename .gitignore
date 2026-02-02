@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# Internal docs
+human-needs.md
+
+# Editor
+*.swp
+*~
