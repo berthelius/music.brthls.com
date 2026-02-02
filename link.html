@@ -361,16 +361,37 @@ body {
   color: var(--yellow);
 }
 
+/* SOON badge for disabled platforms */
+.link-btn--soon {
+  opacity: 0.4;
+  pointer-events: none;
+  border-left-color: var(--cement-dark);
+}
+
+.link-btn--soon.visible {
+  opacity: 0.4;
+}
+
+.btn-soon {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cement-mid);
+  background: var(--cement-dark);
+  padding: 0.15rem 0.4rem;
+  margin-left: auto;
+}
+
 /* Platform brand hover colors */
 .link-btn[data-p="spotify"]:hover       { border-color: #1DB954; color: #1DB954; box-shadow: 0 0 12px rgba(29,185,84,0.1); }
 .link-btn[data-p="apple-music"]:hover   { border-color: #FA243C; color: #FA243C; box-shadow: 0 0 12px rgba(250,36,60,0.1); }
-.link-btn[data-p="youtube-music"]:hover { border-color: #FF0000; color: #FF0000; box-shadow: 0 0 12px rgba(255,0,0,0.1); }
+.link-btn[data-p="youtube"]:hover       { border-color: #FF0000; color: #FF0000; box-shadow: 0 0 12px rgba(255,0,0,0.1); }
 .link-btn[data-p="bandcamp"]:hover      { border-color: #629AA9; color: #629AA9; box-shadow: 0 0 12px rgba(98,154,169,0.1); }
-.link-btn[data-p="soundcloud"]:hover    { border-color: #FF5500; color: #FF5500; box-shadow: 0 0 12px rgba(255,85,0,0.1); }
 .link-btn[data-p="tidal"]:hover         { border-color: #00FFFF; color: #00FFFF; box-shadow: 0 0 12px rgba(0,255,255,0.1); }
 .link-btn[data-p="amazon-music"]:hover   { border-color: #25D1DA; color: #25D1DA; box-shadow: 0 0 12px rgba(37,209,218,0.1); }
 .link-btn[data-p="deezer"]:hover        { border-color: #A238FF; color: #A238FF; box-shadow: 0 0 12px rgba(162,56,255,0.1); }
-.link-btn[data-p="pandora"]:hover       { border-color: #3668FF; color: #3668FF; box-shadow: 0 0 12px rgba(54,104,255,0.1); }
 
 /* ── SOCIAL LINKS ── */
 .social-row {
@@ -400,8 +421,7 @@ body {
 
 .social-btn:hover { transform: translateY(-2px); }
 .social-btn[data-p="instagram"]:hover { border-color: #E1306C; color: #E1306C; box-shadow: 0 0 10px rgba(225,48,108,0.12); }
-.social-btn[data-p="tiktok"]:hover    { border-color: #00f2ea; color: #00f2ea; box-shadow: 0 0 10px rgba(0,242,234,0.12); }
-.social-btn[data-p="x"]:hover         { border-color: var(--white-dirty); color: var(--white-dirty); box-shadow: 0 0 10px rgba(232,228,223,0.08); }
+.social-btn[data-p="youtube"]:hover   { border-color: #FF0000; color: #FF0000; box-shadow: 0 0 10px rgba(255,0,0,0.12); }
 
 /* ── CONTACT BLOCK ── */
 .contact-block {
@@ -498,6 +518,7 @@ body {
   }
   .ticker { animation: none; }
   .link-btn { opacity: 1; transform: none; }
+  .link-btn--soon { opacity: 0.4; }
 }
 
 /* ── RESPONSIVE ── */
@@ -602,7 +623,7 @@ body {
   <div class="spotify-embed">
     <iframe
       src="about:blank"
-      data-src="https://open.spotify.com/embed/album/ALBUM_ID?utm_source=generator&theme=0"
+      data-src="https://open.spotify.com/embed/album/2pkAQgxawlNSQiydppimIE?utm_source=generator&theme=0"
       allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
       loading="lazy"
       title="Spotify Player">
@@ -616,7 +637,8 @@ body {
   <div class="divider"><span>Stream</span></div>
 
   <div class="links-stack" data-stagger>
-    <a href="https://open.spotify.com/artist/BRTHLS" target="_blank" rel="noopener" class="link-btn" data-p="spotify" style="--i:0">
+    <!-- SPOTIFY (ACTIVE) -->
+    <a href="https://open.spotify.com/intl-es/artist/7glvvqkM5Uyh3uTnA9Dsgp" target="_blank" rel="noopener" class="link-btn" data-p="spotify" style="--i:0">
       <span class="btn-icon">
         <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       </span>
@@ -624,7 +646,8 @@ body {
       <span class="btn-arrow">&rarr;</span>
     </a>
 
-    <a href="https://music.apple.com/artist/brthls" target="_blank" rel="noopener" class="link-btn" data-p="apple-music" style="--i:1">
+    <!-- APPLE MUSIC (ACTIVE) -->
+    <a href="https://music.apple.com/us/album/b%C3%BAnker/1873584192" target="_blank" rel="noopener" class="link-btn" data-p="apple-music" style="--i:1">
       <span class="btn-icon">
         <svg viewBox="0 0 24 24"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043A5.022 5.022 0 0019.7.222C18.964.076 18.218 0 17.462 0H6.541c-.758 0-1.504.076-2.24.222a5.022 5.022 0 00-1.874.669C1.309 1.624.564 2.624.247 3.934a9.23 9.23 0 00-.24 2.19C0 6.474 0 6.824 0 7.174v9.652c0 .35 0 .7.007 1.05.015.773.096 1.536.24 2.19.317 1.31 1.062 2.31 2.18 3.043.588.39 1.218.667 1.874.82.736.146 1.482.222 2.24.222h10.92c.758 0 1.504-.076 2.24-.222a5.022 5.022 0 001.874-.67c1.118-.733 1.863-1.733 2.18-3.043.144-.654.225-1.417.24-2.19.007-.35.007-.7.007-1.05V7.174c0-.35 0-.7-.007-1.05zM17.5 12.148v4.076c0 .34-.022.672-.086.996-.134.672-.522 1.158-1.132 1.418a2.47 2.47 0 01-.803.176 2.632 2.632 0 01-1.56-.312c-.547-.312-.892-.772-1.002-1.42a2.174 2.174 0 01.242-1.504c.328-.584.842-.942 1.49-1.1.377-.09.762-.144 1.147-.192.32-.042.512-.192.55-.512V9.896a.588.588 0 00-.02-.158c-.04-.14-.136-.222-.282-.2-.34.05-.68.104-1.018.162l-4.068.722a.66.66 0 00-.202.072c-.13.08-.182.204-.188.35-.002.054-.004.108-.004.16v6.354c0 .34-.02.672-.086.996-.134.672-.522 1.158-1.132 1.418a2.47 2.47 0 01-.803.176 2.632 2.632 0 01-1.56-.312c-.547-.312-.892-.772-1.002-1.42a2.174 2.174 0 01.242-1.504c.328-.584.842-.942 1.49-1.1.377-.09.762-.144 1.147-.192.32-.042.508-.19.55-.512V7.594c0-.258.014-.516.06-.77.072-.39.294-.66.66-.798.196-.074.4-.12.606-.152l5.252-.932c.188-.032.378-.062.566-.082.286-.032.51.12.562.402.016.086.022.174.022.262V12.148z"/></svg>
       </span>
@@ -632,15 +655,17 @@ body {
       <span class="btn-arrow">&rarr;</span>
     </a>
 
-    <a href="https://music.youtube.com/channel/BRTHLS" target="_blank" rel="noopener" class="link-btn" data-p="youtube-music" style="--i:2">
+    <!-- YOUTUBE (ACTIVE) -->
+    <a href="https://www.youtube.com/channel/UCPutNp9W0DaYrK6R_-IJQHQ" target="_blank" rel="noopener" class="link-btn" data-p="youtube" style="--i:2">
       <span class="btn-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm0 19.104c-3.924 0-7.104-3.18-7.104-7.104S8.076 4.896 12 4.896s7.104 3.18 7.104 7.104-3.18 7.104-7.104 7.104zm0-13.332c-3.432 0-6.228 2.796-6.228 6.228S8.568 18.228 12 18.228 18.228 15.432 18.228 12 15.432 5.772 12 5.772zM9.684 15.54V8.46L16.2 12l-6.516 3.54z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
       </span>
-      <span class="btn-label">YouTube Music</span>
+      <span class="btn-label">YouTube</span>
       <span class="btn-arrow">&rarr;</span>
     </a>
 
-    <a href="https://brthls.bandcamp.com" target="_blank" rel="noopener" class="link-btn" data-p="bandcamp" style="--i:3">
+    <!-- BANDCAMP (ACTIVE) -->
+    <a href="https://brthls.bandcamp.com/album/b-nker" target="_blank" rel="noopener" class="link-btn" data-p="bandcamp" style="--i:3">
       <span class="btn-icon">
         <svg viewBox="0 0 24 24"><path d="M0 18.75l7.437-13.5H24l-7.438 13.5z"/></svg>
       </span>
@@ -648,49 +673,32 @@ body {
       <span class="btn-arrow">&rarr;</span>
     </a>
 
-    <div style="display:flex;justify-content:center;margin:0.5rem 0 0.75rem;">
-      <iframe scrolling="no" style="border:0;width:100%;max-width:360px;height:50px;" src="https://bandcamp.com/band_follow_button_deluxe/1074119459"></iframe>
-    </div>
-
-    <a href="https://soundcloud.com/brthls" target="_blank" rel="noopener" class="link-btn" data-p="soundcloud" style="--i:4">
-      <span class="btn-icon">
-        <svg viewBox="0 0 24 24"><path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.06-.05-.1-.1-.1m-.899.828c-.06 0-.091.037-.104.094L0 14.479l.172 1.308c.013.06.045.094.104.094.054 0 .09-.038.1-.094l.2-1.308-.2-1.332c-.01-.06-.046-.094-.1-.094m1.8-1.143c-.066 0-.108.045-.115.104l-.21 2.563.21 2.457c.007.066.05.104.115.104.064 0 .105-.045.115-.104l.24-2.457-.24-2.563c-.01-.064-.05-.104-.115-.104m.901-.095c-.075 0-.12.051-.127.115l-.195 2.66.195 2.497c.007.075.052.12.127.12.074 0 .119-.051.126-.12l.225-2.497-.225-2.66c-.007-.07-.052-.115-.126-.115m.9-.18c-.089 0-.135.06-.142.135l-.18 2.84.18 2.523c.007.082.053.135.142.135.09 0 .135-.06.142-.135l.202-2.523-.21-2.84c-.007-.08-.053-.135-.142-.135m.932-.313c-.1 0-.148.067-.155.148l-.165 3.153.172 2.546c.007.09.053.148.155.148.1 0 .147-.067.155-.148l.195-2.546-.195-3.153c-.008-.086-.055-.148-.155-.148m.923-.352c-.112 0-.164.075-.17.165l-.152 3.505.152 2.553c.007.098.06.165.17.165.112 0 .163-.075.172-.165l.172-2.553-.172-3.505c-.01-.097-.06-.165-.172-.165m.921-.382c-.12 0-.176.09-.183.18l-.15 3.887.15 2.553c.007.104.06.18.183.18.12 0 .176-.09.184-.18l.165-2.553-.165-3.887c-.008-.097-.064-.18-.184-.18m.958-.322c-.134 0-.188.097-.195.195l-.12 4.21.12 2.545c.007.113.06.195.195.195.128 0 .188-.09.195-.195l.143-2.545-.143-4.21c-.007-.105-.067-.195-.195-.195m.953-.382c-.142 0-.2.105-.207.21l-.113 4.593.113 2.535c.007.12.064.21.207.21.142 0 .2-.105.21-.21l.127-2.535-.127-4.593c-.01-.112-.068-.21-.21-.21m2.756-1.088c-.024 0-.05.003-.076.007a4.853 4.853 0 00-1.712-.313c-.14 0-.21.105-.21.225l-.098 5.955.105 2.52c.007.127.067.225.21.225.135 0 .2-.105.21-.225l.113-2.52-.113-5.955c-.002-.002-.002-.002-.002-.002-.002 0-.002.002-.002.002a4.827 4.827 0 011.575.534c.21.105.39.243.54.405.48.52.78 1.2.78 1.96 0 .87-.375 1.65-.975 2.19-.3.27-.66.48-1.053.63-.225.075-.465.127-.72.15a.46.46 0 01-.06 0h-1.38c-.135 0-.2-.105-.21-.225V7.23c0-.127.075-.232.2-.247.352-.045.712-.067 1.072-.067.75 0 1.47.127 2.145.375A5.28 5.28 0 0124 12.326c0 1.44-.57 2.745-1.5 3.705-.465.48-1.02.87-1.635 1.14a5.28 5.28 0 01-2.16.45h-.885"/></svg>
-      </span>
-      <span class="btn-label">SoundCloud</span>
-      <span class="btn-arrow">&rarr;</span>
-    </a>
-
-    <a href="https://tidal.com/browse/artist/BRTHLS" target="_blank" rel="noopener" class="link-btn" data-p="tidal" style="--i:5">
+    <!-- TIDAL (SOON) -->
+    <div class="link-btn link-btn--soon" data-p="tidal" style="--i:4">
       <span class="btn-icon">
         <svg viewBox="0 0 24 24"><path d="M12.012 3.992L8.008 7.996 12.012 12l4.004-4.004L12.012 3.992zM4.004 7.996L0 12l4.004 4.004L8.008 12 4.004 7.996zm16 0L16 12l4.004 4.004L24.008 12 20.004 7.996zM12.012 12L8.008 16.004l4.004 4.004 4.004-4.004L12.012 12z"/></svg>
       </span>
       <span class="btn-label">Tidal</span>
-      <span class="btn-arrow">&rarr;</span>
-    </a>
+      <span class="btn-soon">Soon</span>
+    </div>
 
-    <a href="https://music.amazon.com/artists/BRTHLS" target="_blank" rel="noopener" class="link-btn" data-p="amazon-music" style="--i:6">
+    <!-- AMAZON MUSIC (SOON) -->
+    <div class="link-btn link-btn--soon" data-p="amazon-music" style="--i:5">
       <span class="btn-icon">
         <svg viewBox="0 0 24 24"><path d="M13.958 10.09c0 1.232.029 2.256-.591 3.351-.502.891-1.301 1.438-2.186 1.438-1.214 0-1.922-.924-1.922-2.292 0-2.692 2.415-3.182 4.7-3.182v.685zm3.186 7.705a.66.66 0 01-.753.077c-1.06-.879-1.247-1.287-1.829-2.125-1.747 1.782-2.983 2.315-5.249 2.315-2.68 0-4.768-1.653-4.768-4.96 0-2.583 1.4-4.339 3.394-5.2 1.728-.753 4.14-.888 5.985-1.098v-.41c0-.753.058-1.642-.384-2.292-.384-.58-1.117-.82-1.767-.82-1.199 0-2.267.616-2.528 1.891-.054.285-.261.565-.546.579l-3.063-.33c-.258-.058-.543-.265-.47-.66C5.895 1.84 8.857.502 11.53.502c1.371 0 3.162.365 4.243 1.4 1.371 1.283 1.241 2.993 1.241 4.859v4.404c0 1.322.549 1.904 1.067 2.617.18.258.222.565-.009.753-.577.481-1.603 1.378-2.166 1.879l-.761-.62zm2.823 1.18c-7.6 3.6-17.4.6-22.2-4.8-.3-.3 0-.75.45-.45C3.42 17.76 9.12 19.65 14.28 19.65c3.36 0 7.2-.9 9.9-2.7.48-.24.84.3.42.66z M22.08 20.88c-.3-.45-2.1-.21-2.94-.12-.24.03-.27-.18-.06-.33 1.44-1.02 3.81-.72 4.08-.39.27.36-.09 2.76-1.44 3.93-.21.18-.39.09-.3-.15.3-.72.96-2.37.66-2.97z"/></svg>
       </span>
       <span class="btn-label">Amazon Music</span>
-      <span class="btn-arrow">&rarr;</span>
-    </a>
+      <span class="btn-soon">Soon</span>
+    </div>
 
-    <a href="https://www.deezer.com/artist/BRTHLS" target="_blank" rel="noopener" class="link-btn" data-p="deezer" style="--i:7">
+    <!-- DEEZER (SOON) -->
+    <div class="link-btn link-btn--soon" data-p="deezer" style="--i:6">
       <span class="btn-icon">
         <svg viewBox="0 0 24 24"><path d="M18.81 4.16v3.03H24V4.16h-5.19zM6.27 8.38v3.027h5.189V8.38H6.27zm6.27 0v3.027h5.19V8.38h-5.19zm6.27 0v3.027H24V8.38h-5.19zM6.27 12.594v3.027h5.189v-3.027H6.27zm6.27 0v3.027h5.19v-3.027h-5.19zm6.27 0v3.027H24v-3.027h-5.19zM0 16.81v3.029h5.19v-3.03H0zm6.27 0v3.029h5.189v-3.03H6.27zm6.27 0v3.029h5.19v-3.03h-5.19zm6.27 0v3.029H24v-3.03h-5.19z"/></svg>
       </span>
       <span class="btn-label">Deezer</span>
-      <span class="btn-arrow">&rarr;</span>
-    </a>
-
-    <a href="https://www.pandora.com/artist/brthls" target="_blank" rel="noopener" class="link-btn" data-p="pandora" style="--i:8">
-      <span class="btn-icon">
-        <svg viewBox="0 0 24 24"><path d="M12.004 0C5.386 0 .024 5.363.024 11.979c0 6.617 5.362 11.98 11.98 11.98 6.616 0 11.979-5.363 11.979-11.98C23.983 5.363 18.62 0 12.004 0zm2.39 15.472H9.86V5.063h4.533c2.903 0 5.255 2.352 5.255 5.255 0 2.902-2.352 5.254-5.255 5.254v-.1z"/></svg>
-      </span>
-      <span class="btn-label">Pandora</span>
-      <span class="btn-arrow">&rarr;</span>
-    </a>
+      <span class="btn-soon">Soon</span>
+    </div>
   </div>
 
   <!-- SOCIAL -->
@@ -700,11 +708,8 @@ body {
     <a href="https://instagram.com/brthls" target="_blank" rel="noopener" class="social-btn" data-p="instagram" aria-label="Instagram">
       <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
     </a>
-    <a href="https://tiktok.com/@brthls" target="_blank" rel="noopener" class="social-btn" data-p="tiktok" aria-label="TikTok">
-      <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-    </a>
-    <a href="https://x.com/brthls" target="_blank" rel="noopener" class="social-btn" data-p="x" aria-label="X">
-      <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    <a href="https://www.youtube.com/channel/UCPutNp9W0DaYrK6R_-IJQHQ" target="_blank" rel="noopener" class="social-btn" data-p="youtube" aria-label="YouTube">
+      <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
     </a>
   </div>
 
@@ -720,8 +725,8 @@ body {
 
   <!-- FOOTER -->
   <div class="footer">
-    <p>&copy; <span id="year">2026</span> BRTHLS &mdash; Todos los derechos reservados</p>
-    <a href="index.html" class="epk-link">EPK / Press Kit &rarr;</a>
+    <p>&copy; 2026 BRTHLS &mdash; Todos los derechos reservados</p>
+    <a href="epk/" class="epk-link">EPK / Press Kit &rarr;</a>
   </div>
 
 </main>
@@ -787,10 +792,6 @@ body {
     }, { rootMargin: '200px' });
     embedObs.observe(embedIframe);
   }
-
-  // 5. Dynamic year
-  var yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 })();
 </script>
