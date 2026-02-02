@@ -330,6 +330,34 @@ h2 {
 }
 .hero-meta span { margin: 0 0.5rem; color: var(--cement-dark); }
 
+/* SCROLL INDICATOR */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--cement-mid);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.scroll-indicator:hover { color: var(--yellow); }
+.scroll-indicator .arrow {
+  font-size: 1.2rem;
+  animation: scroll-bounce 1.5s ease-in-out infinite;
+}
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
 /* LISTEN */
 .listen-grid { margin-top: 2rem; }
 .embed-container {
@@ -372,6 +400,20 @@ h2 {
   font-size: 0.65rem;
   color: var(--cement);
   margin-top: 0.15rem;
+}
+.focus-track .track-play {
+  font-size: 1.2rem;
+  color: var(--cement-mid);
+  margin-left: auto;
+  transition: color 0.2s, transform 0.2s;
+}
+.focus-track:hover .track-play {
+  color: var(--yellow);
+  transform: scale(1.2);
+}
+a.focus-track {
+  text-decoration: none;
+  color: inherit;
 }
 .platform-links {
   display: flex;
@@ -640,6 +682,21 @@ h2 {
   letter-spacing: 0.1em;
   margin-top: 0.5rem;
 }
+.form-success {
+  padding: 1.5rem;
+  background: rgba(212, 160, 23, 0.1);
+  border: 1px solid var(--yellow);
+  text-align: center;
+}
+.form-success h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--yellow);
+}
+.form-success p {
+  font-size: 0.85rem;
+  color: var(--cement);
+}
 
 /* FOOTER */
 footer {
@@ -744,6 +801,10 @@ footer p {
       Álbum debut <span>·</span> 14 tracks <span>·</span> 2026 <span>·</span> Truly independent
     </div>
   </div>
+  <a href="#listen" class="scroll-indicator">
+    <span>Scroll</span>
+    <span class="arrow">&#8595;</span>
+  </a>
 </section>
 
 <!-- LISTEN -->
@@ -765,27 +826,30 @@ footer p {
   </div>
 
   <div class="focus-tracks">
-    <div class="card focus-track glitch-hover">
+    <a href="https://open.spotify.com/track/0jVyPOOqPuveOuLsbj5SCx" target="_blank" rel="noopener" class="card focus-track glitch-hover">
       <span class="track-num">01</span>
       <div>
         <div class="track-title">MANIFIESTO BÚNKER</div>
         <div class="track-hook">Las reglas del juego</div>
       </div>
-    </div>
-    <div class="card focus-track glitch-hover">
+      <span class="track-play">&#9654;</span>
+    </a>
+    <a href="https://open.spotify.com/track/3vhBpmjeLRhU4N8KxQ9jNZ" target="_blank" rel="noopener" class="card focus-track glitch-hover">
       <span class="track-num">07</span>
       <div>
         <div class="track-title">MODO MONJE</div>
         <div class="track-hook">Apagar el ruido, encender el taller</div>
       </div>
-    </div>
-    <div class="card focus-track glitch-hover">
+      <span class="track-play">&#9654;</span>
+    </a>
+    <a href="https://open.spotify.com/track/6TGZJFBnJPj3YPj6Y9YQUZ" target="_blank" rel="noopener" class="card focus-track glitch-hover">
       <span class="track-num">11</span>
       <div>
         <div class="track-title">7-8</div>
         <div class="track-hook">Lo raro es lo mejor</div>
       </div>
-    </div>
+      <span class="track-play">&#9654;</span>
+    </a>
   </div>
 
   <div class="platform-links">
@@ -1059,6 +1123,16 @@ window.addEventListener('scroll', () => {
     link.style.color = link.getAttribute('href') === '#' + current ? 'var(--yellow)' : '';
   });
 });
+
+// Form success message
+if (window.location.search.includes('sent=1')) {
+  const form = document.querySelector('.contact-form');
+  if (form) {
+    form.outerHTML = '<div class="form-success"><h3>Mensaje enviado</h3><p>Gracias por contactar. Responderé en menos de 48h.</p></div>';
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    history.replaceState(null, '', window.location.pathname);
+  }
+}
 </script>
 </body>
 </html>
