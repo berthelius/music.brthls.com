@@ -5,10 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BRTHLS — BÚNKER</title>
 <meta name="description" content="BÚNKER: música para construir en un mundo ruidoso. Álbum debut de BRTHLS (Berthelius). 14 tracks. 2026.">
-<meta property="og:title" content="BRTHLS — BÚNKER">
-<meta property="og:description" content="BÚNKER: música para construir en un mundo ruidoso. Álbum debut. 14 tracks.">
-<meta property="og:image" content="../assets/cover.jpg">
+<meta property="og:title" content="BRTHLS — BÚNKER · Press Kit">
+<meta property="og:description" content="EPK oficial de BÚNKER. Bio, fotos, assets y contacto para prensa y booking.">
+<meta property="og:image" content="https://music.brthls.com/assets/cover.jpg">
+<meta property="og:image:width" content="3000">
+<meta property="og:image:height" content="3000">
 <meta property="og:type" content="music.album">
+<meta property="og:url" content="https://music.brthls.com/prensa/">
+<meta property="og:site_name" content="BRTHLS">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://music.brthls.com/assets/cover.jpg">
+<link rel="canonical" href="https://music.brthls.com/prensa/">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <style>
 /* ══════════════════════════════════════════════════════════
    BRTHLS — BÚNKER EPK
@@ -911,6 +923,7 @@ footer p {
   transform: translateY(0);
 }
 </style>
+<script defer data-domain="music.brthls.com" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
 
@@ -1027,9 +1040,18 @@ footer p {
 
   <div class="about-layout">
     <div class="about-photos">
-      <img src="../assets/portrait1.jpg" alt="BRTHLS — Portrait" style="grid-row: span 2;">
-      <img src="../assets/portrait2.jpg" alt="BRTHLS — Portrait 2">
-      <img src="../assets/cover.jpg" alt="BÚNKER — Cover">
+      <picture style="grid-row: span 2;">
+        <source srcset="../assets/portrait1.webp" type="image/webp">
+        <img src="../assets/portrait1.jpg" alt="BRTHLS — Portrait">
+      </picture>
+      <picture>
+        <source srcset="../assets/portrait2.webp" type="image/webp">
+        <img src="../assets/portrait2.jpg" alt="BRTHLS — Portrait 2">
+      </picture>
+      <picture>
+        <source srcset="../assets/cover.webp" type="image/webp">
+        <img src="../assets/cover.jpg" alt="BÚNKER — Cover">
+      </picture>
     </div>
 
     <div class="about-text">
@@ -1238,10 +1260,13 @@ TODO: SECCIÓN PRESS — Descomentar cuando haya prensa/reviews reales
       </div>
     </div>
 
-    <form class="contact-form" onsubmit="event.preventDefault(); alert('Formulario enviado — conecta con tu backend');">
-      <input type="text" placeholder="Nombre" required>
-      <input type="email" placeholder="Email" required>
-      <textarea placeholder="Mensaje"></textarea>
+    <form class="contact-form" action="https://formsubmit.co/music@brthls.com" method="POST">
+      <input type="hidden" name="_subject" value="[EPK] Nuevo contacto desde music.brthls.com">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://music.brthls.com/prensa/?sent=1">
+      <input type="text" name="name" placeholder="Nombre" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="message" placeholder="Mensaje"></textarea>
       <button type="submit" class="btn btn--primary" style="align-self:flex-start;">Enviar</button>
       <span class="response-time">Response time: 48h</span>
     </form>
