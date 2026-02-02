@@ -864,16 +864,6 @@ footer p {
   text-transform: uppercase;
 }
 
-.footer-ai {
-  margin-top: 0.75rem;
-  font-family: var(--font-mono);
-  font-size: 0.55rem;
-  color: var(--cement-dark);
-  letter-spacing: 0.05em;
-  font-style: italic;
-  text-transform: none;
-}
-
 /* ── TRACKLIST ── */
 .tracklist {
   list-style: none;
@@ -1294,16 +1284,18 @@ TODO: SECCIÓN PRESS — Descomentar cuando haya prensa/reviews reales
       </div>
     </div>
 
-    <form class="contact-form" action="https://formsubmit.co/music@brthls.com" method="POST">
-      <input type="hidden" name="_subject" value="[EPK] Nuevo contacto desde music.brthls.com">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://music.brthls.com/prensa/?sent=1">
-      <input type="text" name="name" placeholder="Nombre" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <textarea name="message" placeholder="Mensaje"></textarea>
-      <button type="submit" class="btn btn--primary" style="align-self:flex-start;">Enviar</button>
-      <span class="response-time">Response time: 48h</span>
-    </form>
+    <div class="card" style="padding:2rem;">
+      <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--cement-mid);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:1rem;">
+        EPK Request
+      </div>
+      <div style="font-size:1.5rem;font-weight:700;margin-bottom:1rem;color:var(--white-dirty);">
+        ¿Necesitas el press kit completo?
+      </div>
+      <p style="color:var(--cement);font-size:0.8rem;margin-bottom:1.5rem;line-height:1.6;">
+        Fotos en alta, bio extendida, rider técnico y más.
+      </p>
+      <a href="mailto:music@brthls.com?subject=EPK%20Request%20-%20BRTHLS%20BÚNKER" class="btn btn--primary">Solicitar EPK</a>
+    </div>
   </div>
 </section>
 
